@@ -1,0 +1,15 @@
+.input-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field input[type="text"], input[type="password"] {
+
+  padding-left: 5%;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,39 @@
+
+
+form {
+    width: 310px;
+}
+
+.hralign {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    
+}
+
+* {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+
+.resize {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 55px;
+}
+
+.text {
+    color: #f6f6f6;
+}
+
+.verticalMargin {
+    margin: 30px auto 20px auto;
+    width: 80%;
+}
+
+.login-title {
+    text-align: center;
+    color: #f6f6f6;
+    margin: 15px auto 35px auto;
+}
