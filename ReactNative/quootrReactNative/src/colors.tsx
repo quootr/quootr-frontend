@@ -1,0 +1,30 @@
+const colors = {
+    quootrBlack: '#161616',
+    quootrWhite: '#f6f6f6',
+    quootrBlue: '#5e95ff',
+    quootrGreen: '#86f574',
+    quootrPurple: '#915eff',
+    quootrYellow: '#ffe459',
+    quootrPink: '#ff6b99',
+    quootrSalmon: '#ff5e5e',
+    quootrRed: '#fa493c',
+    quootrOrange: '#ff985f',
+    quootrGray: '#bdbdbd',
+    quootrElectrifiedYellow: '#f9ff00',
+    quootrElectrifiedBlue: '#00ffff',
+    quootrElectrifiedPink: '#ff00c6',
+    quootrElectrifiedOrange: '#ff7a00',
+    quootrElectrifiedPurple: '#6000ff',
+    quootrElectrifiedRed: '#ff003d',
+    quootrElectrifiedGreen: '#00ff47',
+    quootColorRed: '#ffa4a4',
+    quootColorPurple: '#d6c3ff',
+    quootColorAqua: '#bbffe6',
+    quootColorYellow: '#fff5a4',
+    quootColorOrange: '#ffc086',
+    quootColorPink: '#ff9bcb',
+    quootColorGreen: '#d1ffa4',
+  };
+  
+  export default colors;
+  
