@@ -1,12 +1,13 @@
 import React from "react";
 import colors from "../../colors";
-import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { KeyboardTypeOptions, Platform, StyleSheet, Text, TextInput, View } from "react-native";
 
 type InputFieldProps = {
   value: string;
   onChangeText: (text: string) => void;
   placeholder: string;
   placeholderTextColor: string;
+  keyboardType: KeyboardTypeOptions;
   secureTextEntry?: boolean;
   width?: number | string; // new prop for width
 };
@@ -15,7 +16,7 @@ export default function InputField({
   value,
   onChangeText,
   placeholder,
-  placeholderTextColor,
+  keyboardType,
   secureTextEntry,
   width,
 }: InputFieldProps) {
@@ -25,6 +26,7 @@ export default function InputField({
         style={[styles.input, { width }]} // apply width style
         value={value}
         onChangeText={onChangeText}
+        keyboardType={keyboardType}
         placeholder={placeholder}
         placeholderTextColor={colors.quootrGray}
         secureTextEntry={secureTextEntry}

@@ -7,17 +7,22 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import InputField from "../components/inputField/inputField";
-import Submit from "../components/submit/submit";
-import colors from "../colors";
+import InputField from "../../components/inputField/inputField";
+import Submit from "../../components/submit/submit";
+import colors from "../../colors";
 import { useNavigation } from '@react-navigation/native'
 
 export default function RegisterScreen() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordconfirmation, setPasswordConfirmation] = useState("");
   const [name, setName] = useState("");
   const [inviteCode, setInviteCode] = useState("");
-  const navigation = useNavigation();
+  type Nav = {
+    navigate: (value: string) => void; 
+ }
+   
+ const { navigate } = useNavigation<Nav>()
 
   const handleLogin = () => {
     // handle login logic here
@@ -31,7 +36,7 @@ export default function RegisterScreen() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          source={require("../../assets/images/Star4.png")}
+          source={require("../../../assets/images/Star4.png")}
           style={{ width: 121, height: 140, marginTop: 20 }}
         />
         <Text style={styles.welcomeText}>Vamos criar a sua conta?</Text>
@@ -41,6 +46,7 @@ export default function RegisterScreen() {
         onChangeText={(text) => setInviteCode(text)}
         placeholder="Código de convite"
         placeholderTextColor=""
+        keyboardType="default"
         width={310} // set width
       />
       <InputField
@@ -48,13 +54,15 @@ export default function RegisterScreen() {
         onChangeText={(text) => setName(text)}
         placeholder="Nome"
         placeholderTextColor=""
+        keyboardType="default"
         width={310} // set width
       />
       <InputField
         value={user}
         onChangeText={(text) => setUser(text)}
-        placeholder="@Usuário"
+        placeholder="Usuário"
         placeholderTextColor=""
+        keyboardType="default"
         width={310} // set width
       />
       <InputField
@@ -63,25 +71,27 @@ export default function RegisterScreen() {
         placeholder="Senha"
         placeholderTextColor=""
         secureTextEntry={true}
+        keyboardType="default"
         width={310} // set width
       />
       <InputField
-        value={password}
-        onChangeText={(text) => setPassword(text)}
+        value={passwordconfirmation}
+        onChangeText={(text) => setPasswordConfirmation(text)}
         placeholder="Senha de novo"
         placeholderTextColor=""
         secureTextEntry={true}
+        keyboardType="default"
         width={310} // set width
       />
       <Submit
         title="Continuar"
-        onPress={handleLogin}
+        onPress={ () => navigate('RegisterAuthScreen')}
         width={309} // You can set it to any value you want
         height={88}
       />
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>Já tem uma conta? </Text>
-        <TouchableOpacity onPress={ () => navigation.navigate('LoginScreen')}>
+        <TouchableOpacity onPress={ () => navigate('LoginScreen')}>
           <Text style={styles.footerLink}>Faça login!</Text>
         </TouchableOpacity>
       </View>

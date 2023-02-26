@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   View,
@@ -13,9 +12,10 @@ import Submit from "../../components/submit/submit";
 import colors from "../../colors";
 import { useNavigation } from '@react-navigation/native'
 
-export default function LoginScreen() {
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+export default function RegisterAuthScreen() {
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birthday, setBirthday] = useState("");
   type Nav = {
     navigate: (value: string) => void; 
  }
@@ -27,47 +27,48 @@ export default function LoginScreen() {
   };
 
   const handleRegister = () => {
-    //
+    // handle register logic here
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          source={require("../../../assets/images/Star5.png")}
-          style={{ width: 200, height: 200 }}
+          source={require("../../../assets/images/Star4.png")}
+          style={{ width: 121, height: 140, marginTop: 20 }}
         />
-        <Text style={styles.welcomeText}>Quem é você?</Text>
+        <Text style={styles.welcomeText}>Agora, vamos te verificar...</Text>
       </View>
       <InputField
-        value={user}
-        onChangeText={(text) => setUser(text)}
-        placeholder="@Usuário"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+        placeholder="E-mail"
         placeholderTextColor=""
-        keyboardType="default"
+        keyboardType="email-address"
         width={310} // set width
       />
       <InputField
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        placeholder="Senha"
+        value={phone}
+        onChangeText={(text) => setPhone(text)}
+        placeholder="Telefone"
         placeholderTextColor=""
-        secureTextEntry={true}
-        keyboardType="default"
+        keyboardType="numeric"
+        width={310} // set width
+      />
+      <InputField
+        value={birthday}
+        onChangeText={(text) => setBirthday(text)}
+        placeholder="Data de nascimento"
+        placeholderTextColor=""
+        keyboardType="numeric"
         width={310} // set width
       />
       <Submit
-        title="Entrar"
-        onPress={ () => navigate('RegisterScreen')}
+        title="Criar conta!"
+        onPress={ () => navigate('LoginScreen')}
         width={309} // You can set it to any value you want
         height={88}
       />
-      <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>Não tem uma conta? </Text>
-        <TouchableOpacity onPress={ () => navigate('RegisterScreen')}>
-          <Text style={styles.footerLink}>Crie uma!</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "SpaceGrotesk-Regular",
-    backgroundColor: colors.quootrPurple,
+    backgroundColor: colors.quootrOrange,
   },
   imageContainer: {
     alignItems: "center",
@@ -107,11 +108,11 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     flexDirection: "row",
-    marginTop: 20,
+    marginTop: 5,
   },
   footerLink: {
     fontSize: 16,
-    color: colors.quootrYellow,
+    color: colors.quootrBlack,
     fontFamily: "SpaceGrotesk-Bold",
   },
 });
