@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  Platform,
 } from "react-native";
 import InputField from "../../components/inputField/inputField";
 import Submit from "../../components/submit/submit";
@@ -36,7 +37,11 @@ export default function RegisterScreen() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          source={require("../../../assets/images/Star4.png")}
+          source={
+            Platform.OS === "android" // se usuário usar android, usa o png, se não, svg
+              ? require("../../../assets/images/Star4.png")
+              : require("../../../assets/images/Star4.svg")
+          }
           style={{ width: 121, height: 140, marginTop: 20 }}
         />
         <Text style={styles.welcomeText}>Vamos criar a sua conta?</Text>

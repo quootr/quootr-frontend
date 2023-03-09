@@ -7,34 +7,32 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  Platform,
 } from "react-native";
 import InputField from "../../components/inputField/inputField";
+import SearchBar from "../../components/inputField/searchbar";
 import Submit from "../../components/submit/submit";
 import colors from "../../colors";
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from "@react-navigation/native";
 
 export default function LoginScreen() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   type Nav = {
-    navigate: (value: string) => void; 
- }
-   
- const { navigate } = useNavigation<Nav>()
-
-  const handleLogin = () => {
-    // handle login logic here
+    navigate: (value: string) => void;
   };
 
-  const handleRegister = () => {
-    //
-  };
+  const { navigate } = useNavigation<Nav>();
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          source={require("../../../assets/images/Star5.png")}
+          source={
+            Platform.OS === "android" // se usuário usar android, usa o png, se não, svg
+              ? require("../../../assets/images/Star5.png")
+              : require("../../../assets/images/Star5.svg")
+          }
           style={{ width: 200, height: 200 }}
         />
         <Text style={styles.welcomeText}>Quem é você?</Text>
@@ -45,7 +43,7 @@ export default function LoginScreen() {
         placeholder="@Usuário"
         placeholderTextColor=""
         keyboardType="default"
-        width={310} // set width
+        width={309} // set width
       />
       <InputField
         value={password}
@@ -54,17 +52,17 @@ export default function LoginScreen() {
         placeholderTextColor=""
         secureTextEntry={true}
         keyboardType="default"
-        width={310} // set width
+        width={309} // set width
       />
       <Submit
         title="Entrar"
-        onPress={ () => navigate('RegisterScreen')}
+        onPress={() => navigate("RegisterScreen")}
         width={309} // You can set it to any value you want
         height={88}
       />
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>Não tem uma conta? </Text>
-        <TouchableOpacity onPress={ () => navigate('RegisterScreen')}>
+        <TouchableOpacity onPress={() => navigate("RegisterScreen")}>
           <Text style={styles.footerLink}>Crie uma!</Text>
         </TouchableOpacity>
       </View>

@@ -36,16 +36,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 25,
     marginBottom: 25,
-    shadowOpacity: 1, // aumentar a opacidade da sombra
-    shadowRadius: 4, // aumentar o raio da sombra
-    shadowColor: colors.quootrBlack,
-    shadowOffset: { width: 0, height: 3 },
-    ...Platform.select({
-      android: {
-        borderBottomColor: colors.quootrBlack,
-        borderBottomWidth: 4,
-      },
-    }),
+    borderBottomColor: colors.quootrBlack,
+    borderBottomWidth: 4,
   },
   title: {
     color: colors.quootrBlack,

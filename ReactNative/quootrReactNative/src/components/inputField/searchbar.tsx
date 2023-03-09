@@ -2,24 +2,24 @@ import React from "react";
 import colors from "../../colors";
 import { KeyboardTypeOptions, Platform, StyleSheet, Text, TextInput, View } from "react-native";
 
-type InputFieldProps = {
+type SearchBarProps = {
   value: string;
   onChangeText: (text: string) => void;
   placeholder: string;
   placeholderTextColor: string;
   keyboardType: KeyboardTypeOptions;
   secureTextEntry?: boolean;
-  width?: number | string; // new prop for width
+  width?: number | string;
 };
 
-export default function InputField({
+export default function SearchBar({ //TO DO
   value,
   onChangeText,
   placeholder,
   keyboardType,
   secureTextEntry,
   width,
-}: InputFieldProps) {
+}: SearchBarProps) {
   return (
     <View style={styles.container}>
       <TextInput
@@ -53,7 +53,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     height: 60,
     width: "100%",
-    borderBottomColor: colors.quootrBlack,
-    borderBottomWidth: 4,
+    shadowOpacity: 1, // aumentar a opacidade da sombra
+    shadowRadius: 4, // aumentar o raio da sombra
+    shadowColor: colors.quootrBlack,
+    shadowOffset: { width: 0, height: 3 },
+    ...Platform.select({
+      android: {
+        borderBottomColor: colors.quootrBlack,
+        borderBottomWidth: 4,
+      },
+    }),
   },
 });

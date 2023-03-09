@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  Platform,
 } from "react-native";
 import InputField from "../../components/inputField/inputField";
 import Submit from "../../components/submit/submit";
@@ -22,19 +23,15 @@ export default function RegisterAuthScreen() {
    
  const { navigate } = useNavigation<Nav>()
 
-  const handleLogin = () => {
-    // handle login logic here
-  };
-
-  const handleRegister = () => {
-    // handle register logic here
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          source={require("../../../assets/images/Star4.png")}
+          source={
+            Platform.OS === "android" // se usuário usar android, usa o png, se não, svg
+              ? require("../../../assets/images/Star4.png")
+              : require("../../../assets/images/Star4.svg")
+          }
           style={{ width: 121, height: 140, marginTop: 20 }}
         />
         <Text style={styles.welcomeText}>Agora, vamos te verificar...</Text>
@@ -65,7 +62,7 @@ export default function RegisterAuthScreen() {
       />
       <Submit
         title="Criar conta!"
-        onPress={ () => navigate('LoginScreen')}
+        onPress={ () => navigate('RegisterInterestScreen')}
         width={309} // You can set it to any value you want
         height={88}
       />
