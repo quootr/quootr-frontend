@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   View,
@@ -10,19 +9,19 @@ import {
   Platform,
 } from "react-native";
 import InputField from "../../components/inputField/inputField";
-import SearchBar from "../../components/inputField/searchbar";
 import Submit from "../../components/submit/submit";
 import colors from "../../colors";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native'
 
-export default function LoginScreen() {
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+export default function RegisterAuthScreen() {
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birthday, setBirthday] = useState("");
   type Nav = {
-    navigate: (value: string) => void;
-  };
-
-  const { navigate } = useNavigation<Nav>();
+    navigate: (value: string) => void; 
+ }
+   
+ const { navigate } = useNavigation<Nav>()
 
   return (
     <View style={styles.container}>
@@ -30,42 +29,43 @@ export default function LoginScreen() {
         <Image
           source={
             Platform.OS === "android" // se usuário usar android, usa o png, se não, svg
-              ? require("../../../assets/images/Star5.png")
-              : require("../../../assets/images/Star5.svg")
+              ? require("../../../assets/images/Star4.png")
+              : require("../../../assets/images/Star4.svg")
           }
-          style={{ width: 200, height: 200 }}
+          style={{ width: 121, height: 140, marginTop: 20 }}
         />
-        <Text style={styles.welcomeText}>Quem é você?</Text>
+        <Text style={styles.welcomeText}>Agora, vamos te verificar...</Text>
       </View>
       <InputField
-        value={user}
-        onChangeText={(text) => setUser(text)}
-        placeholder="@Usuário"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+        placeholder="E-mail"
         placeholderTextColor=""
-        keyboardType="default"
-        width={309} // set width
+        keyboardType="email-address"
+        width={310} // set width
       />
       <InputField
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        placeholder="Senha"
+        value={phone}
+        onChangeText={(text) => setPhone(text)}
+        placeholder="Telefone"
         placeholderTextColor=""
-        secureTextEntry={true}
-        keyboardType="default"
-        width={309} // set width
+        keyboardType="numeric"
+        width={310} // set width
+      />
+      <InputField
+        value={birthday}
+        onChangeText={(text) => setBirthday(text)}
+        placeholder="Data de nascimento"
+        placeholderTextColor=""
+        keyboardType="numeric"
+        width={310} // set width
       />
       <Submit
-        title="Entrar"
-        onPress={() => navigate("RegisterScreen")}
+        title="Criar conta!"
+        onPress={ () => navigate('RegisterInterestScreen')}
         width={309} // You can set it to any value you want
         height={88}
       />
-      <View style={styles.footerContainer}>
-        <Text style={styles.footerText}>Não tem uma conta? </Text>
-        <TouchableOpacity onPress={() => navigate("RegisterScreen")}>
-          <Text style={styles.footerLink}>Crie uma!</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "SpaceGrotesk-Regular",
-    backgroundColor: colors.quootrPurple,
+    backgroundColor: colors.quootrOrange,
   },
   imageContainer: {
     alignItems: "center",
@@ -105,11 +105,11 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     flexDirection: "row",
-    marginTop: 20,
+    marginTop: 5,
   },
   footerLink: {
     fontSize: 16,
-    color: colors.quootrYellow,
+    color: colors.quootrBlack,
     fontFamily: "SpaceGrotesk-Bold",
   },
 });
