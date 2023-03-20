@@ -12,7 +12,7 @@ type SubmitProps = {
 export default function Submit({
   title,
   onPress,
-  width = "100%",
+  width = "80%",
   height = 50,
 }: SubmitProps) {
   return (

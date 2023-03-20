@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     borderColor: colors.quootrBlack,
     borderRadius: 4,
     borderBottomWidth: 2,
-    borderBottomColor: colors.quootrBlack,
+    // borderBottomColor: colors.quootrBlack,
     marginRight: 6,
     width: 23,
     height: 23,

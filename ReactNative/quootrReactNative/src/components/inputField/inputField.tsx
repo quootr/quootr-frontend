@@ -39,10 +39,6 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
   },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
   input: {
     borderWidth: 1,
     backgroundColor: colors.quootrWhite,
