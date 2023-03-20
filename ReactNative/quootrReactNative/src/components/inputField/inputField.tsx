@@ -1,6 +1,6 @@
 import React from "react";
 import colors from "../../colors";
-import { KeyboardTypeOptions, Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { KeyboardTypeOptions, StyleSheet, TextInput, View, Platform } from "react-native";
 
 type InputFieldProps = {
   value: string;
@@ -23,7 +23,10 @@ export default function InputField({
   return (
     <View style={styles.container}>
       <TextInput
-        style={[styles.input, { width }]} // apply width style
+        style={[
+          styles.input,
+          { width },
+        ]}
         value={value}
         onChangeText={onChangeText}
         keyboardType={keyboardType}
@@ -39,6 +42,10 @@ const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
   },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
   input: {
     borderWidth: 1,
     backgroundColor: colors.quootrWhite,
@@ -49,7 +56,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     height: 60,
     width: "100%",
-    borderBottomColor: colors.quootrBlack,
-    borderBottomWidth: 4,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 3,
+    ...Platform.select({
+      android: {
+        borderBottomColor: colors.quootrBlack,
+        borderBottomWidth: 4,
+        elevation: 0,
+      },
+    }),
   },
 });

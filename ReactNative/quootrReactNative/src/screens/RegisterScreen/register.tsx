@@ -37,6 +37,7 @@ export default function RegisterScreen() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
+          resizeMode="center"
           source={
             Platform.OS === "android" // se usuário usar android, usa o png, se não, svg
               ? require("../../../assets/images/Star4.png")
@@ -111,8 +112,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     fontFamily: "SpaceGrotesk-Regular",
     backgroundColor: colors.quootrBlue,
+    marginBottom: 10,
   },
   imageContainer: {
+    flex: 1,
     alignItems: "center",
     marginBottom: 40,
   },
