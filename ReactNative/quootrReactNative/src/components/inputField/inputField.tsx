@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     fontSize: 16,
-    height: 60
+    height: 60,
     width: "100%",
     shadowColor: "#000",
     shadowOffset: {
