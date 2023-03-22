@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import Feed from "../screens/HomeScreen/feed";
 import LoginScreen from "../screens/LoginScreen/login";
 import RegisterScreen from "../screens/RegisterScreen/register";
 import RegisterAuthScreen from "../screens/RegisterScreen/registerauth";
 import RegisterInterestScreen from "../screens/RegisterScreen/registerinterest";
 import RegisterAddInterestScreen from "../screens/RegisterScreen/registeraddinterest";
+import { StackActions } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +41,13 @@ export default function Routes() {
         component={RegisterAddInterestScreen}
         options={{ headerShown: false }}
       />
+
+      <Stack.Screen
+        name="Feed"
+        component={Feed}
+        options={{headerShown: false}}
+        />
+      
     </Stack.Navigator>
   );
 }
