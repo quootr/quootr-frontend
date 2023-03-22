@@ -1,6 +1,6 @@
 import React from "react";
 import colors from "../../colors";
-import { KeyboardTypeOptions, Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { KeyboardTypeOptions, Platform, StyleSheet, Text, TextInput, View, Image } from "react-native";
 
 type SearchBarProps = {
   value: string;
@@ -8,8 +8,8 @@ type SearchBarProps = {
   placeholder: string;
   placeholderTextColor: string;
   keyboardType: KeyboardTypeOptions;
-  secureTextEntry?: boolean;
   width?: number | string;
+  height?: number | string;
 };
 
 export default function SearchBar({ //TO DO
@@ -17,20 +17,30 @@ export default function SearchBar({ //TO DO
   onChangeText,
   placeholder,
   keyboardType,
-  secureTextEntry,
-  width,
+  width = "80%",
+  height = "44",
 }: SearchBarProps) {
   return (
     <View style={styles.container}>
+      <View style={styles.allContainer}>
       <TextInput
         style={[styles.input, { width }]} // apply width style
         value={value}
         onChangeText={onChangeText}
         keyboardType={keyboardType}
         placeholder={placeholder}
-        placeholderTextColor={colors.quootrGray}
-        secureTextEntry={secureTextEntry}
+        placeholderTextColor={colors.quootrBlack}
+        
       />
+      </View>
+      <Image
+            style={styles.magnifierImage}
+            source={
+              Platform.OS === "android" // se usuário usar android, usa o png, se não, svg
+                ? require("../../../assets/images/magnifier.png")
+                : require("../../../assets/images/magnifier.svg")
+            }
+          />
     </View>
   );
 }
@@ -38,21 +48,15 @@ export default function SearchBar({ //TO DO
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  input: {
+    backgroundColor: colors.quootrYellow,
     borderWidth: 1,
-    backgroundColor: colors.quootrWhite,
+    width: 310,
+    height: 44,
     borderColor: colors.quootrBlack,
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 12,
-    fontSize: 16,
-    height: 60,
-    width: "100%",
+    flexDirection: "row",
     shadowOpacity: 1, // aumentar a opacidade da sombra
     shadowRadius: 4, // aumentar o raio da sombra
     shadowColor: colors.quootrBlack,
@@ -63,5 +67,20 @@ const styles = StyleSheet.create({
         borderBottomWidth: 4,
       },
     }),
+  },
+  input: {
+    fontSize: 16,
+    fontFamily: "SpaceGrotesk-Regular",
+  },
+  magnifierImage: {
+    alignSelf: "flex-end",
+    width: 19.8,
+    height: 19.8
+  },
+  allContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });

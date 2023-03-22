@@ -14,7 +14,7 @@ import SearchBar from "../../components/inputField/searchbar";
 import Submit from "../../components/submit/submit";
 import colors from "../../colors";
 import { useNavigation } from "@react-navigation/native";
-
+import { Dimensions } from "react-native";
 export default function LoginScreen() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +23,9 @@ export default function LoginScreen() {
   };
 
   const { navigate } = useNavigation<Nav>();
+  const { width } = Dimensions.get('window');
+  const maxWidth = Math.min(width * 0.8, 530);
+  const borderRadiusDefault = 8;
 
   return (
     <View style={styles.container}>
@@ -43,7 +46,7 @@ export default function LoginScreen() {
         placeholder="@Usuário"
         placeholderTextColor=""
         keyboardType="default"
-        width={309} // set width
+        width={maxWidth} // set width
       />
       <InputField
         value={password}
@@ -56,13 +59,13 @@ export default function LoginScreen() {
       />
       <Submit
         title="Entrar"
-        onPress={() => navigate("RegisterScreen")}
+        onPress={() => navigate("Feed")}
         width={309} // You can set it to any value you want
         height={88}
       />
       <View style={styles.footerContainer}>
         <Text style={styles.footerText}>Não tem uma conta? </Text>
-        <TouchableOpacity onPress={() => navigate("RegisterScreen")}>
+        <TouchableOpacity onPress={() => navigate("Feed")}>
           <Text style={styles.footerLink}>Crie uma!</Text>
         </TouchableOpacity>
       </View>

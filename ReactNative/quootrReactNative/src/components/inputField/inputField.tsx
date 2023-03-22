@@ -1,6 +1,7 @@
 import React from "react";
 import colors from "../../colors";
-import { KeyboardTypeOptions, StyleSheet, TextInput, View, Platform } from "react-native";
+import { KeyboardTypeOptions, Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { Dimensions } from "react-native";
 
 type InputFieldProps = {
   value: string;
@@ -37,14 +38,13 @@ export default function InputField({
     </View>
   );
 }
+const { width } = Dimensions.get('window');
+const maxWidth = Math.min(width * 0.75, 930);
+const borderRadiusDefault = 8;
 
 const styles = StyleSheet.create({
   container: {
     marginBottom: 10,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
   },
   input: {
     borderWidth: 1,

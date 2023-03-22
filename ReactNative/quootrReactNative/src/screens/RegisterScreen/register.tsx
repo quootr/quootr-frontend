@@ -91,7 +91,7 @@ export default function RegisterScreen() {
       <Submit
         title="Continuar"
         onPress={ () => navigate('RegisterAuthScreen')}
-        width={309} // You can set it to any value you want
+        width={310} // You can set it to any value you want
         height={88}
       />
       <View style={styles.footerContainer}>

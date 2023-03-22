@@ -13,6 +13,7 @@ import Submit from "../../components/submit/submit";
 import colors from "../../colors";
 import { useNavigation } from "@react-navigation/native";
 import UserSuggest from "../../components/user/usersuggest";
+import SearchBar from "../../components/inputField/searchbar";
 
 export default function RegisterAddInterestScreen() {
   type Nav = {
@@ -20,6 +21,7 @@ export default function RegisterAddInterestScreen() {
   };
 
   const { navigate } = useNavigation<Nav>();
+  const [search, setSearch] = useState("");
 
   return (
     <View style={styles.container}>
@@ -35,6 +37,16 @@ export default function RegisterAddInterestScreen() {
         <Text style={styles.welcomeText}>Agora, que tal seguir</Text>
         <Text style={styles.welcomeTextsub}>alguém?</Text>
       </View>
+      <SearchBar 
+      value={search}
+      onChangeText={(text) => setSearch(text)}
+      placeholder="Buscar Alguém..."
+      placeholderTextColor=""
+      keyboardType="default"
+      width={310}
+      height={20}
+      
+      />
       <UserSuggest
       text={'Oiiiiii gentennn'}
       user={'@Davas'} />
@@ -50,7 +62,7 @@ export default function RegisterAddInterestScreen() {
       <Submit
         title="Concluir!"
         onPress={() => navigate("LoginScreen")}
-        width={309} // You can set it to any value you want
+        width={310} // You can set it to any value you want
         height={88}
       />
     </View>
@@ -78,7 +90,6 @@ const styles = StyleSheet.create({
   welcomeTextsub: {
     fontFamily: "SpaceGrotesk-Bold",
     fontSize: 24,
-    marginBottom: 23,
     color: colors.quootrWhite,
   },
 });
