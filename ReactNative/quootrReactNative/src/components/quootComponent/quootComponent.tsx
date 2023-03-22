@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  TouchableOpacity,
+  Pressable,
   Image,
   StyleSheet,
   Text,
@@ -16,7 +16,7 @@ type QuootComponentProps = {
   userImage: string;
   quootContent: string;
   quootTimestamp: string;
-  quootImage?: string; // Add this line to include an optional quootImage property
+  quootImage?: string;
   quootColor?: string;
   onCommentPress: () => void;
   onSharePress: () => void;
@@ -29,61 +29,81 @@ export default function QuootComponent({
   userImage,
   quootContent,
   quootTimestamp,
-  quootImage, // Add this line to receive the quootImage prop
+  quootImage,
   quootColor,
   onCommentPress,
   onSharePress,
   onOptionsPress,
 }: QuootComponentProps) {
+  const [commentPressed, setCommentPressed] = useState(false);
+  const [sharePressed, setSharePressed] = useState(false);
+  const [optionsPressed, setOptionsPressed] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <View style={styles.nameContainer}>
           <Image style={styles.userImage} source={{ uri: userImage }} />
           <Text style={styles.user}>{user}</Text>
-          <Image style={styles.verified} source={require('../../../assets/images/teamverified.png')} />
+          <Image style={styles.verified} source={require('../../../assets/images/verified.png')} />
           <Text style={styles.separator}>·</Text>
           <Text style={styles.username}>@{username}</Text>
         </View>
         <Text style={styles.quootContent}>{quootContent}</Text>
-        <Text style={styles.quootTimestamp}>{quootTimestamp}</Text>
-        {quootImage ? ( // Use a ternary operator to conditionally render the Image component
+        {quootImage ? (
           <Image style={styles.quootImage} source={{ uri: quootImage }} />
         ) : null}
+        <Text style={styles.quootTimestamp}>{quootTimestamp}</Text>
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity onPress={onCommentPress} style={styles.commentButton}>
+          <Pressable
+            onPress={onCommentPress}
+            onPressIn={() => setCommentPressed(true)}
+            onPressOut={() => setCommentPressed(false)}
+            style={[styles.commentButton, commentPressed ? styles.commentPressed : {}]}
+          >
             <Image
               style={styles.iconComment}
               source={require('../../../assets/images/comment.png')}
             />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onSharePress} style={styles.shareButton}>
+          </Pressable>
+          <Pressable
+            onPress={onSharePress}
+            onPressIn={() => setSharePressed(true)}
+            onPressOut={() => setSharePressed(false)}
+            style={[styles.shareButton, sharePressed ? styles.sharePressed : {}]}
+          >
             <Image
               style={styles.iconShare}
               source={require('../../../assets/images/share.png')}
             />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={onOptionsPress} style={styles.optionsButton}>
+          </Pressable>
+          <Pressable
+            onPress={onOptionsPress}
+            onPressIn={() => setOptionsPressed(true)}
+            onPressOut={() => setOptionsPressed(false)}
+            style={[styles.optionsButton, optionsPressed ? styles.optionsPressed : {}]}
+          >
             <Image
               style={styles.iconOptions}
               source={require('../../../assets/images/options.png')}
             />
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </View>
     </View>
   );
 }
 
+
 const { width } = Dimensions.get('window');
 const maxWidth = Math.min(width * 0.80, 530);
-const imageWidth = Math.min(width*.75, 510);
-const imageHeight = Math.min(width*.55, 350); 
+const imageWidth = Math.min(width*.74009, 510);
+const imageHeight = Math.min(width*.54, 350); 
 const borderRadiusDefault = 8;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.quootrWhite,
+    backgroundColor: colors.quootColorGreen,
     marginTop: 10,
     marginBottom: 10,
     flexDirection: 'column',
@@ -116,6 +136,18 @@ const styles = StyleSheet.create({
     padding: 10,
     borderTopRightRadius: borderRadiusDefault,
     borderTopLeftRadius: borderRadiusDefault,
+  },
+  commentPressed: {
+    backgroundColor:colors.quootrDarkYellow,
+    top: 2,
+  },
+  sharePressed: {
+    backgroundColor:colors.quootrDarkRed,
+    top: 2,
+  },
+  optionsPressed: {
+    backgroundColor:colors.quootrDarkBlue,
+    top: 2,
   },
   userImage: {
     width: 26,
@@ -158,12 +190,13 @@ const styles = StyleSheet.create({
     color: colors.quootrBlack,
   },
   quootTimestamp: {
-    marginLeft: 10,
+    marginRight: 13,
     fontSize: 12,
     marginBottom: 10,
     color: colors.quootrBlack,
     opacity: .5,
     fontFamily: 'SpaceGrotesk-Regular',
+    textAlign: 'right',
   },
   quootImage: {
     width: imageWidth,
