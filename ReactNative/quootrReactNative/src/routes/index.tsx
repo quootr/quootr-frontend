@@ -1,13 +1,13 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Feed from "../screens/HomeScreen/feed";
+import Messages from "../screens/Messages/messages";
 import LoginScreen from "../screens/LoginScreen/login";
 import RegisterScreen from "../screens/RegisterScreen/register";
 import RegisterAuthScreen from "../screens/RegisterScreen/registerauth";
 import RegisterInterestScreen from "../screens/RegisterScreen/registerinterest";
 import RegisterAddInterestScreen from "../screens/RegisterScreen/registeraddinterest";
 import { StackActions } from "@react-navigation/native";
-
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
@@ -48,6 +48,11 @@ export default function Routes() {
         options={{headerShown: false}}
         />
       
+      <Stack.Screen
+        name="Messages"
+        component={Messages}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 }
