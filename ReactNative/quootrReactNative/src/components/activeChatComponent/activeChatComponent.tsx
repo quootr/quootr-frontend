@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
     bottom: 30,
     left: 15,
     borderRadius: 20,
-    paddingHorizontal: 9,
+    width: 27,
+    paddingHorizontal: 5.5,
     paddingVertical: 3,
     justifyContent: 'center',
     alignItems: 'center',
@@ -130,6 +131,7 @@ const styles = StyleSheet.create({
     color: colors.quootrBlack,
     fontFamily: 'SpaceGrotesk-Bold',
     textAlign: 'center',
+    letterSpacing:-2,
   },
 });
 
