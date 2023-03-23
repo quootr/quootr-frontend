@@ -11,24 +11,28 @@ import { Dimensions } from 'react-native';
 import { Platform } from 'react-native';
 
 type QuootComponentProps = {
+  quootID: string;
   user: string;
   username: string;
   userImage: string;
   quootContent: string;
   quootTimestamp: string;
   quootImage?: string;
-  quootColor?: string;
+  verifiedType?: 'verified'|'quootrTeam'|'government'|'plus';
+  quootColor?: keyof typeof colors;
   onCommentPress: () => void;
   onSharePress: () => void;
   onOptionsPress: () => void;
 };
 
 export default function QuootComponent({
+  quootID,
   user,
   username,
   userImage,
   quootContent,
   quootTimestamp,
+  verifiedType,
   quootImage,
   quootColor,
   onCommentPress,
@@ -38,14 +42,44 @@ export default function QuootComponent({
   const [commentPressed, setCommentPressed] = useState(false);
   const [sharePressed, setSharePressed] = useState(false);
   const [optionsPressed, setOptionsPressed] = useState(false);
+  const backgroundColor = colors[quootColor ?? 'quootrWhite'];
 
+  const handleCommentPress = (quootID: string) => {
+    console.log('Comment pressed for quoot ID:', quootID);
+  };
+
+  const handleSharePress = (quootID: string) => {
+    console.log('Share pressed for quoot ID:', quootID);
+  };
+
+  const handleOptionsPress = (quootID: string) => {
+    console.log('Options pressed for quoot ID:', quootID);
+  };
+
+  const getVerifiedImage = () => {
+    switch (verifiedType) {
+      case 'verified':
+        return require('../../../assets/images/verified.png');
+      case 'quootrTeam':
+        return require('../../../assets/images/teamverified.png');
+      case 'government':
+        return require('../../../assets/images/governmentverified.png');
+      case 'plus':
+        return require('../../../assets/images/plusverified.png');
+      default:
+        return null;
+    }
+  };
+  const verifiedImage = getVerifiedImage();
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor }]}>
       <View style={styles.textContainer}>
         <View style={styles.nameContainer}>
           <Image style={styles.userImage} source={{ uri: userImage }} />
           <Text style={styles.user}>{user}</Text>
-          <Image style={styles.verified} source={require('../../../assets/images/verified.png')} />
+          {verifiedImage && (
+            <Image style={styles.verified} source={verifiedImage} />
+          )}
           <Text style={styles.separator}>·</Text>
           <Text style={styles.username}>@{username}</Text>
         </View>
@@ -56,7 +90,7 @@ export default function QuootComponent({
         <Text style={styles.quootTimestamp}>{quootTimestamp}</Text>
         <View style={styles.buttonsContainer}>
           <Pressable
-            onPress={onCommentPress}
+            onPress={() => handleCommentPress(quootID)}
             onPressIn={() => setCommentPressed(true)}
             onPressOut={() => setCommentPressed(false)}
             style={[styles.commentButton, commentPressed ? styles.commentPressed : {}]}
@@ -67,7 +101,7 @@ export default function QuootComponent({
             />
           </Pressable>
           <Pressable
-            onPress={onSharePress}
+            onPress={() => handleSharePress(quootID)}
             onPressIn={() => setSharePressed(true)}
             onPressOut={() => setSharePressed(false)}
             style={[styles.shareButton, sharePressed ? styles.sharePressed : {}]}
@@ -78,7 +112,7 @@ export default function QuootComponent({
             />
           </Pressable>
           <Pressable
-            onPress={onOptionsPress}
+            onPress={() => handleOptionsPress(quootID)}
             onPressIn={() => setOptionsPressed(true)}
             onPressOut={() => setOptionsPressed(false)}
             style={[styles.optionsButton, optionsPressed ? styles.optionsPressed : {}]}

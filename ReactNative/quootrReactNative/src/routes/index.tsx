@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import Chat from "../screens/Chat/chat";
 import Feed from "../screens/HomeScreen/feed";
 import Messages from "../screens/Messages/messages";
 import LoginScreen from "../screens/LoginScreen/login";
@@ -53,6 +54,13 @@ export default function Routes() {
         component={Messages}
         options={{headerShown: false}}
       />
+
+      <Stack.Screen
+        name="Chat"
+        component={Chat}
+        options={{headerShown: false}}
+      />
+      
     </Stack.Navigator>
   );
 }

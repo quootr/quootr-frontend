@@ -3,43 +3,50 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   Dimensions,
   Platform,
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import colors from "../../colors";
 
 export default function LatestQuoots() {
-  const [selectedFilter, setSelectedFilter] = useState('Região');
+  const [selectedFilter, setSelectedFilter] = useState('Regional');
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const dropdownOptions = ['Regional', 'Amigos', 'Global'];
 
   const handleChangeFilter = (value: string) => {
     setSelectedFilter(value);
-  };  
+    setShowDropdown(false);
+  };
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Últimos quoots</Text>
-      {Platform.OS === 'android' ? (
-        <Picker
-          selectedValue={selectedFilter}
-          style={styles.picker}
-          onValueChange={handleChangeFilter}
-        >
-          <Picker.Item label="Região" value="Regional" />
-          <Picker.Item label="Amigos" value="Friends" />
-          <Picker.Item label="Global" value="Global" />
-        </Picker>
-      ) : (
-        <TouchableOpacity onPress={() => console.log('Dropdown is clicked')}>
-          <Text style={styles.dropdown}>
-            {selectedFilter}
-          </Text>
-        </TouchableOpacity>
+      <Pressable onPress={toggleDropdown} style={styles.dropdown}>
+        <Text style={styles.dropdownText}>{selectedFilter}</Text>
+      </Pressable>
+      {showDropdown && (
+        <View style={styles.dropdownList}>
+          {dropdownOptions.map((option, index) => (
+            <Pressable
+              key={index}
+              onPress={() => handleChangeFilter(option)}
+              style={styles.dropdownOption}
+            >
+              <Text style={styles.dropdownOptionText}>{option}</Text>
+            </Pressable>
+          ))}
+        </View>
       )}
     </View>
   );
 }
+
 const { width } = Dimensions.get('window');
 const maxWidth = Math.min(width * 0.62, 530);
 const borderRadiusDefault = 8;
@@ -63,29 +70,43 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 3,
       width: 0,
-    }
+    },
+    zIndex: 1,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    fontFamily: 'SpaceGrotesk-Bold'
-  },
-  picker: {
-    width: 120,
-    height: 46,
+    fontFamily: 'SpaceGrotesk-Bold',
   },
   dropdown: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'SpaceGrotesk-Bold',
+    width: 80,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderColor: colors.quootrBlack,
     borderWidth: 1,
-    padding: 5,
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-    width: 80,
+    borderRadius: 4,
     backgroundColor: colors.quootrWhite,
+  },
+  dropdownText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    fontFamily: 'SpaceGrotesk-Bold',
+  },
+  dropdownList: {
+    position: 'absolute',
+    top: 40,
+    right: 10,
+    backgroundColor: colors.quootrWhite,
+    borderColor: colors.quootrBlack,
+    borderWidth: 1,
+    borderRadius: 4,
+  },
+  dropdownOption: {
+    padding: 5,
+  },
+  dropdownOptionText: {
+    fontSize: 16,
+    fontFamily: 'SpaceGrotesk-Regular',
   },
 });
