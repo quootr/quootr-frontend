@@ -17,8 +17,11 @@ const sanitizeInput = (input: string): string => {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 };
+type ChatInputFieldProps = {
+  onSend: (message: string) => void;
+};
 
-const ChatInputField = () => {
+const ChatInputField = ({ onSend }: ChatInputFieldProps) => {
   const [message, setMessage] = useState('');
 
   const handleInsertFiles = () => {
@@ -26,15 +29,16 @@ const ChatInputField = () => {
   };
 
   const handleSend = () => {
-    // Implement your send functionality here
-    setMessage('');
+    if (message.trim()) {
+      onSend(message);
+      setMessage('');
+    }
   };
 
   const handleChangeText = (text: string) => {
     const sanitizedText = sanitizeInput(text);
     setMessage(sanitizedText);
   };
-
 
   return (
     <View style={styles.container}>

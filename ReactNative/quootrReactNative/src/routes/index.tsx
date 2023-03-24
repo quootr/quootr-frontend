@@ -3,23 +3,18 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Chat from "../screens/Chat/chat";
 import Feed from "../screens/HomeScreen/feed";
 import Messages from "../screens/Messages/messages";
-import LoginScreen from "../screens/LoginScreen/login";
-import RegisterScreen from "../screens/RegisterScreen/register";
-import RegisterAuthScreen from "../screens/RegisterScreen/registerauth";
-import RegisterInterestScreen from "../screens/RegisterScreen/registerinterest";
-import RegisterAddInterestScreen from "../screens/RegisterScreen/registeraddinterest";
+// import LoginScreen from "../screens/LoginScreen/login";
+// import RegisterScreen from "../screens/RegisterScreen/register";
+// import RegisterAuthScreen from "../screens/RegisterScreen/registerauth";
+// import RegisterInterestScreen from "../screens/RegisterScreen/registerinterest";
+// import RegisterAddInterestScreen from "../screens/RegisterScreen/registeraddinterest";
 import { StackActions } from "@react-navigation/native";
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="RegisterInterestScreen"
         component={RegisterInterestScreen}
         options={{ headerShown: false }}
@@ -41,7 +36,7 @@ export default function Routes() {
         name="RegisterAddInterestScreen"
         component={RegisterAddInterestScreen}
         options={{ headerShown: false }}
-      />
+      /> */}
 
       <Stack.Screen
         name="Feed"
