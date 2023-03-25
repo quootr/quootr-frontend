@@ -6,7 +6,7 @@ import {
   Image,
   StyleSheet,
 } from 'react-native';
-import colors from '../../colors';
+import colors from '../../../colors';
 import { Dimensions } from 'react-native';
 
 const sanitizeInput = (input: string): string => {
@@ -45,7 +45,7 @@ const ChatInputField = ({ onSend }: ChatInputFieldProps) => {
       <Pressable onPress={handleInsertFiles}>
         <Image
           style={styles.insertFilesButton}
-          source={require('../../../assets/images/insertFiles.png')}
+          source={require('../../../../assets/images/insertFiles.png')}
         />
       </Pressable>
       <TextInput
@@ -58,7 +58,7 @@ const ChatInputField = ({ onSend }: ChatInputFieldProps) => {
       <Pressable onPress={handleSend} disabled={!message}>
         <Image
           style={[styles.sendButton, !message ? styles.sendButtonDisabled : {}]}
-          source={require('../../../assets/images/send.png')}
+          source={require('../../../../assets/images/send.png')}
         />
       </Pressable>
     </View>

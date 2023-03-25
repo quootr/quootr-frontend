@@ -22,20 +22,27 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
   const sentBgColor = colors['quootrWhite'];
   const bgColor = sent ? sentBgColor : receivedBgColor;
   const bubbleStyle = sent
-    ? { ...styles.bubbleContainer, borderTopRightRadius: 3, alignSelf: 'flex-end' }
-    : { ...styles.bubbleContainer, borderTopLeftRadius: 3, alignSelf: 'flex-start' };
+    ? { ...styles.bubbleContainer, borderTopRightRadius: 3, alignSelf: 'flex-end' } as const
+    : { ...styles.bubbleContainer, borderTopLeftRadius: 3, alignSelf: 'flex-start' } as const;
+  const readStatusStyle = sent
+    ? { ...styles.readStatus } as const
+    : { ...styles.readStatus, display: 'none' } as const;
+  const separatorStyle = sent
+    ? { ...styles.separator } as const
+    : { ...styles.separator, display: 'none' } as const;
 
   return (
     <View style={[styles.bubbleContainer, bubbleStyle, { backgroundColor: bgColor }]}>
       <Text style={styles.content}>{content}</Text>
       <View style={styles.footer}>
         <Text style={styles.timestamp}>{timestamp}</Text>
-        <Text style={styles.separator}>·</Text>
-        <Text style={styles.readStatus}>{readStatus}</Text>
+        <Text style={separatorStyle}>·</Text>
+        <Text style={readStatusStyle}>{readStatus}</Text>
       </View>
     </View>
   );
 };
+
 
 const { width } = Dimensions.get('window');
 const maxWidth = Math.min(width * 0.60, width*0.575);
@@ -66,6 +73,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginTop: 5,
+    height: 15,
   },
   timestamp: {
     fontSize: 12,
@@ -76,7 +84,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginHorizontal: 1,
-    bottom: 3,
+    lineHeight: 18.5,
+    textAlign: 'center',
+    alignContent: 'center',
+    textAlignVertical: 'center',
     color: colors.quootrBlack,
   },
   readStatus: {
