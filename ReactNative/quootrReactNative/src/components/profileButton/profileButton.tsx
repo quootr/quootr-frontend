@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
       borderRadius: 8,
       borderWidth: 1,
       borderColor: colors.quootrBlack,
-      backgroundColor: colors.quootrYellow,
+      backgroundColor: colors.quootrPink,
       justifyContent: 'center',
       alignItems: 'center',
       shadowColor: colors.quootrBlack,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     },
     buttonPressed: {
       top: 4,
-      backgroundColor: colors.quootrDarkYellow,
+      backgroundColor: colors.quootrDarkPink,
       shadowOffset: {
         height: 0,
         width: 0,

@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     shadowColor: colors.quootrBlack,
+    borderColor: colors.quootrBlack,
     shadowOpacity: 1,
     elevation: 3,
     shadowRadius: 0,
