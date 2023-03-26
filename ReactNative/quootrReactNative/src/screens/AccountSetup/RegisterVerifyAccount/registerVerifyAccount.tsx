@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Text,
+    Image,
+    Pressable,
+    TouchableWithoutFeedback,
+    Keyboard,
+  } from 'react-native';
 import colors from '../../../colors';
 import TextInputField from '../../../components/inputFields/textInputField/textInputField';
 import DefaultButton from '../../../components/buttons/defaultButton/defaultButton';
@@ -37,10 +45,14 @@ if (!birthDate) {
   setBirthDateError('');
 }
 
+
 return isValid;
 };
-
+const dismissKeyboard = () => {
+    Keyboard.dismiss();
+  };
 return (
+<TouchableWithoutFeedback onPress={dismissKeyboard}>
 <View style={styles.container}>
 <Image
 style={styles.image}
@@ -91,6 +103,7 @@ source={require('../../../../assets/images/Star4.png')}
     textColor="quootrBlack"
   />
 </View>
+</TouchableWithoutFeedback>
 );
 };
 

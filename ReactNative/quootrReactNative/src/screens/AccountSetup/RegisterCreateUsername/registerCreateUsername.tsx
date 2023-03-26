@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Text,
+    Image,
+    Pressable,
+    TouchableWithoutFeedback,
+    Keyboard,
+  } from 'react-native';
 import colors from '../../../colors';
 import TextInputField from '../../../components/inputFields/textInputField/textInputField';
 import DefaultButton from '../../../components/buttons/defaultButton/defaultButton';
@@ -20,10 +28,14 @@ export default function RegisterCreateUsername() {
     // call API to create account and handle response
     // if the API returns an error, set the error message
     // otherwise, navigate to the next screen
-    setError('');
+    setError('1');
   };
 
-  return (
+  const dismissKeyboard = () => {
+    Keyboard.dismiss();
+  };
+return (
+<TouchableWithoutFeedback onPress={dismissKeyboard}>
     <View style={styles.container}>
       <Image
         style={styles.image}
@@ -44,7 +56,7 @@ export default function RegisterCreateUsername() {
         }}
       />
 
-      {error ? <ErrorComponent error='Este @apelido já está sendo usado, escolha outro, por favor...'/> : null}
+      {error ? <ErrorComponent error='Este @apelido já está sendo usado, por favor, escolha outro...'/> : null}
 
       <DefaultButton
         title="Criar conta!"
@@ -53,6 +65,7 @@ export default function RegisterCreateUsername() {
         textColor="quootrBlack"
       />
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
