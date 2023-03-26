@@ -209,7 +209,7 @@ export default function Feed() {
   );
 }
 const { width } = Dimensions.get('window');
-const gapBetweenQuoots = Math.min(width * 0.078, 530);
+const gapBetweenButtons = Math.min(width * 0.078, 530);
 const maxWidth = Math.min(width * 0.80, 530);
 
 const styles = StyleSheet.create({
@@ -237,10 +237,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   buttonContainer: {
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
     marginBottom: 35,
-    gap: gapBetweenQuoots,
+    width: maxWidth,
   },
 });

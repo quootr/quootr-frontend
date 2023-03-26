@@ -79,23 +79,24 @@
             />
         </ScrollView>
         
-        <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
         <ProfileButton onPress={handleHomeButtonPress} />
         <HomeButton onPress={handleHomeButtonPress} />
         <NewChatButton onPress={handleHomeButtonPress} />
         </View>
         </View>
-        </View>
     );
     };
     const { width } = Dimensions.get('window');
-    const gapBetweenQuoots = Math.min(width * 0.07, 530);
     const labelWidth = Math.min(width * 0.8, 530);
-    
+    const gapBetweenButtons = Math.min(width * 0.078, 530);
+    const maxWidth = Math.min(width * 0.80, 530);
+
     const styles = StyleSheet.create({
     container: {
-        flex: 31,
+        flex: 1,
+        alignContent: 'center',
+        alignItems: 'center',
         backgroundColor: colors.quootrWhite,
     },
     searchBarContainer: {
@@ -147,15 +148,14 @@
         padding: 16,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        gap: gapBetweenQuoots,
+        gap: gapBetweenButtons,
     },
     buttonContainer: {
-        flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
         marginBottom: 35,
-        gap: gapBetweenQuoots,
+        width: maxWidth,
       },
     });
 

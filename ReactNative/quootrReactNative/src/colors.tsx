@@ -13,7 +13,8 @@ const colors = {
     quootrRed: '#FF5B4F',
     quootrDarkRed: '#AE2F2F',
     quootrOrange: '#ff985f',
-    quootrGray: '#bdbdbd',
+    quootrWeakGray: '#BDBDBD',
+    quootrGray: '#828282',
     quootrElectrifiedYellow: '#f9ff00',
     quootrElectrifiedBlue: '#00ffff',
     quootrElectrifiedPink: '#ff00c6',
@@ -28,6 +29,7 @@ const colors = {
     quootColorOrange: '#ffc086',
     quootColorPink: '#ff9bcb',
     quootColorGreen: '#d1ffa4',
+    debug: '#fb00ff',
   };
   
   export default colors;
