@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import QuootComponent from '../../components/quootComponent/quootComponent';
 import LatestQuoots from '../../components/latestQuoots/latestQuoots';
@@ -34,10 +34,10 @@ export default function Feed() {
   const handlePlusButtonPress = () => {
     console.log('Plus pressed');
   };
-
+  const [hasNotifications, setHasNotifications] = useState(true);
   const handleNotificationsPress = () => {
-    console.log('Notifications pressed');
-  }
+    setHasNotifications(!hasNotifications);
+  };
 
   const handleQuootFilterChange = () => {
 
@@ -50,7 +50,7 @@ export default function Feed() {
       <LatestQuoots
       />
       <NotificationsComponent 
-        hasNotifications = {true}
+        hasNotifications = {hasNotifications}
         onPress = {handleNotificationsPress}
       />
       </View>
