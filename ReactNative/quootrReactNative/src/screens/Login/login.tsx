@@ -13,6 +13,7 @@ import TextInputField from '../../components/inputFields/textInputField/textInpu
 import DefaultButton from '../../components/buttons/defaultButton/defaultButton';
 import { Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import StickButton from '../../components/buttons/stickButton/stickButton';
 
 export default function Login() {
   type Nav = {
@@ -53,6 +54,9 @@ export default function Login() {
     Keyboard.dismiss();
   };
 
+
+  
+  
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <View style={styles.container}>
@@ -60,7 +64,6 @@ export default function Login() {
           style={styles.image}
           source={require('../../../assets/images/Star5.png')}
         />
-
         <Text style={styles.title}>Quem é você?</Text>
         <TextInputField
         placeholder="@apelido"

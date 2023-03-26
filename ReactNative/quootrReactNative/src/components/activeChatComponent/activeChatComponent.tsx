@@ -102,14 +102,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginRight: 8,
     shadowColor: colors.quootrBlack,
+    backgroundColor: colors.quootrWhite,
     borderWidth: 1,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    }
   },
   messageContainer: {
     flex: 1,
