@@ -16,7 +16,7 @@ import { useNavigation } from '@react-navigation/native';
 import ErrorComponent from '../../../components/errorComponent/errorComponent';
 import StickButton from '../../../components/buttons/stickButton/stickButton';
 
-export default function RegisteInterestsProvide() {
+export default function RegisterInterestsProvide() {
   type Nav = {
     navigate: (value: string) => void;
   };
@@ -29,7 +29,7 @@ export default function RegisteInterestsProvide() {
     // call API to create account and handle response
     // if the API returns an error, set the error message
     // otherwise, navigate to the next screen
-    setError('1');
+    navigate('RegisterFollowAccounts');
   };
 
   const stickButtonPress = (buttonKey: string, isChecked: boolean) => {
@@ -48,19 +48,87 @@ return (
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={require('../../../../assets/images/Star4.png')}
+        source={require('../../../../assets/images/Star7.png')}
       />
         
       <Text style={styles.title}>
-        Por último, um @apelido único para você!
+        Oi! Boas vindas ao Quootr, É um prazer te ter aqui!
       </Text>
+      <Text style={styles.subtitle}>
+        Para começar, que tal selecionar alguns tópicos para seguir?
+      </Text>
+      <View style={styles.vrCol}>
+      <View style={styles.hrRow}>
       <StickButton
           onPress={stickButtonPress}
-          title='teste'
-          buttonKey='teste'
+          title='Games'
+          buttonKey='games'
         ></StickButton>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Fotografia'
+          buttonKey='fotografia'
+        ></StickButton>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Arte'
+          buttonKey='arte'
+        ></StickButton>
+      </View>
+      <View style={styles.hrRow}>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Negócios'
+          buttonKey='negocios'
+        ></StickButton>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Séries'
+          buttonKey='series'
+        ></StickButton>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Ciência'
+          buttonKey='ciencia'
+        ></StickButton>
+      </View>
+      <View style={styles.hrRow}>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Culinária'
+          buttonKey='culinaria'
+        ></StickButton>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Viagens'
+          buttonKey='viagens'
+        ></StickButton>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Moda'
+          buttonKey='moda'
+        ></StickButton>
+      </View>
+      <View style={styles.hrRow}>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Tecnologia'
+          buttonKey='tecnologia'
+        ></StickButton>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Música'
+          buttonKey='musica'
+        ></StickButton>
+      <StickButton
+          onPress={stickButtonPress}
+          title='Livros'
+          buttonKey='livros'
+        ></StickButton>
+      </View>
+      </View>
       <DefaultButton
-        title="Criar conta!"
+        title="Continuar"
         onPress={handleCreateAccount}
         style={styles.button}
         textColor="quootrBlack"
@@ -79,11 +147,20 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.quootrPink,
+    backgroundColor: colors.quootrPurple,
   },
   createAccountContainer: {
     flexDirection: 'row',
     marginTop: 30,
+    gap: 10,
+  },
+  hrRow: {
+    flexDirection: 'row',
+    gap: 5,
+    justifyContent: 'center',
+  },
+  vrCol: {
+    flexDirection: 'column',
     gap: 10,
   },
   image: {
@@ -97,6 +174,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 15,
     fontFamily: 'SpaceGrotesk-Bold',
+    textAlign: 'center',
+    color: colors.quootrWhite,
+  },
+  subtitle: {
+    fontSize: 16,
+    width: maxWidth,
+    fontWeight: 'bold',
+    marginVertical: 15,
+    fontFamily: 'SpaceGrotesk-Regular',
     textAlign: 'center',
     color: colors.quootrWhite,
   },

@@ -7,6 +7,8 @@ import Messages from "../screens/Messages/messages";
 import RegisterCreateAccount from "../screens/AccountSetup/RegisterCreateAccount/registerCreateAccount";
 import RegisterVerifyAccount from "../screens/AccountSetup/RegisterVerifyAccount/registerVerifyAccount";
 import RegisterCreateUsername from "../screens/AccountSetup/RegisterCreateUsername/registerCreateUsername";
+import RegisterInterestsProvide from "../screens/AccountSetup/RegisterInterestsProvide/registerInterestsProvide";
+import RegisterFollowAccounts from "../screens/AccountSetup/RegisterFollowAccounts/registerFollowAccounts";
 // import LoginScreen from "../screens/LoginScreen/login";
 // import RegisterScreen from "../screens/RegisterScreen/register";
 // import RegisterAuthScreen from "../screens/RegisterScreen/registerauth";
@@ -62,6 +64,18 @@ export default function Routes() {
       <Stack.Screen
         name="RegisterCreateUsername"
         component={RegisterCreateUsername}
+        options={{headerShown: false}}
+        />
+
+      <Stack.Screen
+        name="RegisterInterestsProvide"
+        component={RegisterInterestsProvide}
+        options={{headerShown: false}}
+        />
+
+      <Stack.Screen
+        name="RegisterFollowAccounts"
+        component={RegisterFollowAccounts}
         options={{headerShown: false}}
         />
 

@@ -28,7 +28,8 @@ export default function RegisterCreateUsername() {
     // call API to create account and handle response
     // if the API returns an error, set the error message
     // otherwise, navigate to the next screen
-    setError('1');
+    // setError('1');
+    navigate('RegisterInterestsProvide');
   };
 
   const dismissKeyboard = () => {
