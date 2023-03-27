@@ -9,6 +9,8 @@ import RegisterVerifyAccount from "../screens/AccountSetup/RegisterVerifyAccount
 import RegisterCreateUsername from "../screens/AccountSetup/RegisterCreateUsername/registerCreateUsername";
 import RegisterInterestsProvide from "../screens/AccountSetup/RegisterInterestsProvide/registerInterestsProvide";
 import RegisterFollowAccounts from "../screens/AccountSetup/RegisterFollowAccounts/registerFollowAccounts";
+import Compose from "../screens/QuootCompose/Compose";
+
 // import LoginScreen from "../screens/LoginScreen/login";
 // import RegisterScreen from "../screens/RegisterScreen/register";
 // import RegisterAuthScreen from "../screens/RegisterScreen/registerauth";
@@ -84,7 +86,11 @@ export default function Routes() {
         component={Feed}
         options={{headerShown: false}}
         />
-
+      <Stack.Screen
+      name="Compose"
+      component={Compose}
+      options={{headerShown: false}}
+      />
       <Stack.Screen
         name="Messages"
         component={Messages}

@@ -8,7 +8,7 @@ import PlusButton from '../../components/plusButton/plusButton';
 import NotificationsComponent from '../../components/notificationsComponent/notificationsComponent';
 import { Dimensions } from 'react-native';
 import colors from '../../colors';
-
+import { useNavigation } from '@react-navigation/native';
 export default function Feed() {
   const handleOptionsPress = () => {
     console.log('Options pressed');
@@ -30,9 +30,13 @@ export default function Feed() {
   const handleProfileButtonPress = () => {
     console.log('Profile pressed');
   };
+  type Nav = {
+    navigate: (value: string) => void;
+  };
+  const { navigate } = useNavigation<Nav>();
   
   const handlePlusButtonPress = () => {
-    console.log('Plus pressed');
+    navigate("Compose")
   };
   const [hasNotifications, setHasNotifications] = useState(true);
   const handleNotificationsPress = () => {

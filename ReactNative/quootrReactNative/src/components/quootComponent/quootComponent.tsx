@@ -99,6 +99,7 @@ export default function QuootComponent({
               style={styles.iconComment}
               source={require('../../../assets/images/comment.png')}
             />
+            <Text style={styles.commentsAmount}>1M</Text>
           </Pressable>
           <Pressable
             onPress={() => handleSharePress(quootID)}
@@ -110,17 +111,19 @@ export default function QuootComponent({
               style={styles.iconShare}
               source={require('../../../assets/images/share.png')}
             />
+            <Text style={styles.shareAmount}>1</Text>
           </Pressable>
           <Pressable
             onPress={() => handleOptionsPress(quootID)}
             onPressIn={() => setOptionsPressed(true)}
             onPressOut={() => setOptionsPressed(false)}
-            style={[styles.optionsButton, optionsPressed ? styles.optionsPressed : {}]}
+            style={[styles.forwardButton, optionsPressed ? styles.optionsPressed : {}]}
           >
             <Image
               style={styles.iconOptions}
               source={require('../../../assets/images/options.png')}
             />
+            <Text style={styles.forwardAmount}>1</Text>
           </Pressable>
         </View>
       </View>
@@ -176,7 +179,7 @@ const styles = StyleSheet.create({
     top: 2,
   },
   sharePressed: {
-    backgroundColor:colors.quootrDarkRed,
+    backgroundColor:colors.quootrDarkPink,
     top: 2,
   },
   optionsPressed: {
@@ -252,6 +255,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.quootrYellow,
     width: maxWidth / 3,
     height: 45,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomLeftRadius: 8,
@@ -261,15 +265,34 @@ const styles = StyleSheet.create({
     borderColor: colors.quootrBlack,
   },
   shareButton: {
-    backgroundColor: colors.quootrRed,
+    backgroundColor: colors.quootrPink,
     width: maxWidth / 3,
     height: 45,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
+    flexDirection: 'row',
     borderColor: colors.quootrBlack,
   },
-  optionsButton: {
+  shareAmount: {
+    fontFamily: 'SpaceGrotesk-Bold',
+    fontSize: 18,
+    marginHorizontal: 5,
+    color: colors.quootrDarkPink,
+  },
+  commentsAmount: {
+    fontFamily: 'SpaceGrotesk-Bold',
+    fontSize: 18,
+    marginHorizontal: 5,
+    color: colors.quootrDarkYellow,
+  },
+  forwardAmount: {
+    fontFamily: 'SpaceGrotesk-Bold',
+    fontSize: 18,
+    marginHorizontal: 5,
+    color: colors.quootrDarkBlue,
+  },
+  forwardButton: {
     backgroundColor: colors.quootrBlue,
     width: maxWidth / 3,
     height: 45,
@@ -277,6 +300,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomRightRadius: 8,
     borderBottomWidth: 1,
+    flexDirection: 'row',
     borderRightWidth: 1,
     borderTopWidth: 1,
     borderColor: colors.quootrBlack,
