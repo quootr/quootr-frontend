@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontWeight: 'bold',
     marginVertical: 15,
     fontFamily: 'SpaceGrotesk-Bold',
     color: colors.quootrWhite,

@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     width: maxWidth,
-    fontWeight: 'bold',
     marginVertical: 15,
     fontFamily: 'SpaceGrotesk-Bold',
     textAlign: 'center',

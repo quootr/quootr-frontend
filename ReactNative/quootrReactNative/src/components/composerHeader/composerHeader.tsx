@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 import colors from '../../colors';
+import { Dimensions } from 'react-native';
+import CameraButton from '../buttons/cameraButton/cameraButton';
 
 type ComposerHeaderProps = {};
 
@@ -9,10 +10,6 @@ const ComposerHeader = (props: ComposerHeaderProps) => {
   const [selectedFilter, setSelectedFilter] = useState('Regional');
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const filterOptions = ['Regional', 'Amigos', 'Global'];
-
-  const [selectedEmoji, setSelectedEmoji] = useState('emoji1');
-  const [showEmojiDropdown, setShowEmojiDropdown] = useState(false);
-  const emojiOptions = ['emoji1', 'emoji2', 'emoji3', 'emoji4', 'emoji5', 'emoji6', 'emoji7'];
 
   const [selectedColor, setSelectedColor] = useState('color1');
   const [showColorDropdown, setShowColorDropdown] = useState(false);
@@ -23,9 +20,8 @@ const ComposerHeader = (props: ComposerHeaderProps) => {
     setShowFilterDropdown(false);
   };
 
-  const handleEmojiChange = (option: string) => {
-    setSelectedEmoji(option);
-    setShowEmojiDropdown(false);
+  const handleCameraPress = () => {
+    
   };
 
   const handleColorChange = (option: string) => {
@@ -35,116 +31,67 @@ const ComposerHeader = (props: ComposerHeaderProps) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.filterWrapper}>
-        <Pressable onPress={() => setShowFilterDropdown(!showFilterDropdown)}>
-          <View style={styles.filterDropdown}>
-            <Text style={styles.filterText}>{selectedFilter}</Text>
-          </View>
-        </Pressable>
-        {showFilterDropdown && (
-          <View style={styles.dropdown}>
-            {filterOptions.map((option) => (
-              <Pressable
-                key={option}
-                style={styles.dropdownOption}
-                onPress={() => handleFilterChange(option)}
-              >
-                <Text style={styles.dropdownOptionText}>{option}</Text>
-              </Pressable>
-            ))}
-          </View>
-        )}
-      </View>
-      <View style={styles.buttonWrapper}>
-        <Pressable onPress={() => console.log('Camera button pressed')}>
-          <AntDesign name="camera" size={24} color={colors.quootrBlack} />
-        </Pressable>
-      </View>
-      <View style={styles.dropdownWrapper}>
-        <Pressable onPress={() => setShowEmojiDropdown(!showEmojiDropdown)}>
-          <View style={styles.dropdown}>
-            <Text style={styles.dropdownText}>{selectedEmoji}</Text>
-          </View>
-        </Pressable>
-        {showEmojiDropdown && (
-          <View style={styles.dropdown}>
-            {emojiOptions.map((option) => (
-              <Pressable
-                key={option}
-                style={styles.dropdownOption}
-                onPress={() => handleEmojiChange(option)}
-              >
-                <Text style={styles.dropdownOptionText}>{option}</Text>
-              </Pressable>
-            ))}
-          </View>
-        )}
-      </View>
-      <View style={styles.dropdownWrapper}>
-        <Pressable onPress={() => setShowColorDropdown(!showColorDropdown)}>
-          <View style={styles.dropdown}>
-            <Text style={styles.dropdownText}>{selectedColor}</Text>
-          </View>
-        </Pressable>
-        {showColorDropdown && (
-          <View style={styles.dropdown}>
-            {colorOptions.map((option) => (
-              <Pressable
-              key={option}
-              style={styles.dropdownOption}
-              onPress={() => handleColorChange(option)}
-            >
-              <Text style={styles.dropdownOptionText}>{option}</Text>
-            </Pressable>
-          ))}
-        </View>
-      )}
-    </View>
   </View>
 
 );
 };
 
+const { width } = Dimensions.get('window');
+const maxWidth = Math.min(width * 0.80, 530);
 const styles = StyleSheet.create({
 container: {
+zIndex: 1,
+marginTop: 15,
+marginBottom: 5,
+borderRadius: 8,
+width: maxWidth,
 flexDirection: 'row',
 alignItems: 'center',
 justifyContent: 'space-between',
-backgroundColor: colors.quootrWhite,
+backgroundColor: colors.debug,
 height: 50,
-paddingHorizontal: 15,
-borderBottomWidth: 1,
-borderBottomColor: colors.quootrWeakGray,
+paddingHorizontal: 15,    
+borderWidth: 1,
+borderColor: colors.quootrBlack,
+shadowColor: colors.quootrBlack,
+shadowOpacity: 1,
+elevation: 3,
+shadowRadius: 0,
+shadowOffset: {
+  height: 3,
+  width: 0,
+},
+},
+cameraIcon: {
+  width: 40,
+  height: 40,
+  resizeMode: 'contain',
+  backgroundColor: colors.quootrElectrifiedBlue,
 },
 filterWrapper: {
 position: 'relative',
-marginRight: 10,
 },
 filterDropdown: {
 flexDirection: 'row',
 alignItems: 'center',
 justifyContent: 'center',
 height: 30,
-paddingHorizontal: 10,
 borderRadius: 5,
 borderWidth: 1,
 borderColor: colors.quootrWeakGray,
+backgroundColor: colors.quootrElectrifiedBlue,
 },
 filterText: {
 color: colors.quootrGray,
 fontSize: 14,
-fontWeight: 'bold',
 },
 dropdownWrapper: {
-position: 'relative',
-marginRight: 10,
+backgroundColor: colors.quootrElectrifiedBlue,
+
 },
 dropdown: {
 position: 'absolute',
-top: 35,
-right: 0,
-width: 120,
-backgroundColor: colors.quootrWhite,
+backgroundColor: colors.quootrElectrifiedBlue,
 borderWidth: 1,
 borderColor: colors.quootrWeakGray,
 borderRadius: 5,
@@ -158,23 +105,18 @@ shadowRadius: 5,
 elevation: 5,
 },
 dropdownOption: {
-paddingVertical: 5,
-paddingHorizontal: 10,
 borderBottomWidth: 1,
 borderBottomColor: colors.quootrWeakGray,
 },
 dropdownOptionText: {
 color: colors.quootrGray,
 fontSize: 14,
-fontWeight: 'bold',
 },
 buttonWrapper: {
-marginRight: 10,
 },
 dropdownText: {
     color: colors.quootrGray,
     fontSize: 14,
-    fontWeight: 'bold',
   },
 });
 

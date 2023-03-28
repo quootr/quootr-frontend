@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold',
     fontFamily: 'SpaceGrotesk-Bold',
   },
   dropdown: {
@@ -90,7 +89,6 @@ const styles = StyleSheet.create({
   },
   dropdownText: {
     fontSize: 16,
-    fontWeight: 'bold',
     fontFamily: 'SpaceGrotesk-Bold',
   },
   dropdownList: {

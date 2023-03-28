@@ -106,13 +106,11 @@ const styles = StyleSheet.create({
   },
   user: {
     fontSize: 14,
-    fontWeight: 'bold',
     fontFamily: 'SpaceGrotesk-Bold',
     color: colors.quootrBlack,
   },
   separator: {
     fontSize: 16,
-    fontWeight: 'bold',
     marginHorizontal: 5,
     color: colors.quootrBlack,
   },

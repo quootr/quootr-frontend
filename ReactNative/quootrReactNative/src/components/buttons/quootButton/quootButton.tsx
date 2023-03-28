@@ -39,7 +39,7 @@ const QuootButton = ({ title, onPress, style, textColor = 'quootrWhite' }: Defau
 };
 
 const { width } = Dimensions.get('window');
-const maxWidth = Math.min(width * 0.8, 530);
+const maxWidth = Math.min(width * 0.38, 530);
 
 const styles = StyleSheet.create({
   button: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   buttonPressed: {
     top: 4,
-    backgroundColor: colors.quootrDarkYellow,
+    backgroundColor: colors.quootrDarkPurple,
     shadowOffset: {
       height: 0,
       width: 0,
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 16,
-    fontWeight: 'bold',
     fontFamily: 'SpaceGrotesk-Bold',
   },
 });

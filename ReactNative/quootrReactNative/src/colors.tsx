@@ -5,6 +5,7 @@ const colors = {
     quootrDarkBlue: '#4371CB',
     quootrGreen: '#86f574',
     quootrPurple: '#915eff',
+    quootrDarkPurple: '#6131C7',
     quootrYellow: '#FFE459',
     quootrDarkYellow: '#D09236',
     quootrPink: '#ff6b99',

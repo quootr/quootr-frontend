@@ -24,6 +24,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [showForgotArea, setShowForgotArea] = useState(false);
   const { navigate } = useNavigation<Nav>();
 
   const handleLogin = () => {
@@ -35,8 +36,10 @@ export default function Login() {
 
     if (!password) {
       setPasswordError('Obrigatório');
+      setShowForgotArea(true);
     } else {
       setPasswordError('');
+      setShowForgotArea(true);
     }
 
     if (username && password) {
@@ -86,8 +89,18 @@ export default function Login() {
             // Handle password submission
         }}
         error={passwordError}
-        onFocus={() => setPasswordError('')}
+        onFocus={() => setPasswordError('') }
         />
+        <View style={styles.forgotArea}>
+  {showForgotArea && ( // add a condition to show the forgotArea view
+    <>
+      <Text style={styles.forgotText}>Esqueceu de algo?</Text>
+      <Pressable>
+        <Text style={styles.forgotButton}>Clique aqui!</Text>
+      </Pressable>
+    </>
+  )}
+</View>
         <DefaultButton
           title="Login"
           onPress={handleLogin}
@@ -116,10 +129,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.quootrPurple,
   },
+  forgotArea: {
+    flexDirection: 'row',
+    marginTop: 10,
+    gap: 10,
+  },
   createAccountContainer: {
     flexDirection: 'row',
     marginTop: 30,
     gap: 10,
+  },
+  forgotText: {
+    fontFamily: 'SpaceGrotesk-Regular',
+    color: colors.quootrWhite,
+    fontSize: 16,
+  },
+  forgotButton: {
+    fontFamily: 'SpaceGrotesk-Bold',
+    color: colors.quootrYellow,
+    fontSize: 16,
   },
   noAccount: {
     fontFamily: 'SpaceGrotesk-Regular',
@@ -138,7 +166,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    fontWeight: 'bold',
     marginVertical: 15,
     fontFamily: 'SpaceGrotesk-Bold',
     color: colors.quootrWhite,

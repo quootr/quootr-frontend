@@ -159,7 +159,6 @@ const styles = StyleSheet.create({
   },
   chatTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginRight: 'auto',
     color: colors.quootrBlack,
     fontFamily: 'SpaceGrotesk-Bold'

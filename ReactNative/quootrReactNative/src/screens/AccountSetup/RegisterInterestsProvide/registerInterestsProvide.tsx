@@ -171,7 +171,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     width: maxWidth,
-    fontWeight: 'bold',
     marginVertical: 15,
     fontFamily: 'SpaceGrotesk-Bold',
     textAlign: 'center',
@@ -180,7 +179,6 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     width: maxWidth,
-    fontWeight: 'bold',
     marginVertical: 15,
     fontFamily: 'SpaceGrotesk-Regular',
     textAlign: 'center',

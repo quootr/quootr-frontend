@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 16,
-    fontWeight: 'bold',
     fontFamily: 'SpaceGrotesk-Bold',
   },
 });

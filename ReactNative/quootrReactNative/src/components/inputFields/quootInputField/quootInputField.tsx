@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   },
   charsRemaining: {
     alignSelf: 'flex-end',
-    color: colors.quootrBlack,
+    color: colors.quootrGray,
     fontFamily: "SpaceGrotesk-Bold",
     paddingRight: 20,
     fontSize: 12,

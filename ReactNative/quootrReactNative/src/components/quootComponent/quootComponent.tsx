@@ -14,6 +14,9 @@ type QuootComponentProps = {
   quootID: string;
   user: string;
   username: string;
+  comments: string;
+  shares: string;
+  forwards: string;
   userImage: string;
   quootContent: string;
   quootTimestamp: string;
@@ -22,13 +25,16 @@ type QuootComponentProps = {
   quootColor?: keyof typeof colors;
   onCommentPress: () => void;
   onSharePress: () => void;
-  onOptionsPress: () => void;
+  onForwardPress: () => void;
 };
 
 export default function QuootComponent({
   quootID,
   user,
   username,
+  comments,
+  shares,
+  forwards,
   userImage,
   quootContent,
   quootTimestamp,
@@ -37,11 +43,11 @@ export default function QuootComponent({
   quootColor,
   onCommentPress,
   onSharePress,
-  onOptionsPress,
+  onForwardPress,
 }: QuootComponentProps) {
   const [commentPressed, setCommentPressed] = useState(false);
   const [sharePressed, setSharePressed] = useState(false);
-  const [optionsPressed, setOptionsPressed] = useState(false);
+  const [forwardPressed, setForwardPressed] = useState(false);
   const backgroundColor = colors[quootColor ?? 'quootrWhite'];
 
   const handleCommentPress = (quootID: string) => {
@@ -52,8 +58,8 @@ export default function QuootComponent({
     console.log('Share pressed for quoot ID:', quootID);
   };
 
-  const handleOptionsPress = (quootID: string) => {
-    console.log('Options pressed for quoot ID:', quootID);
+  const handleForwardPress = (quootID: string) => {
+    console.log('Forward pressed for quoot ID:', quootID);
   };
 
   const getVerifiedImage = () => {
@@ -99,7 +105,7 @@ export default function QuootComponent({
               style={styles.iconComment}
               source={require('../../../assets/images/comment.png')}
             />
-            <Text style={styles.commentsAmount}>1M</Text>
+            <Text style={styles.commentsAmount}>{comments}</Text>
           </Pressable>
           <Pressable
             onPress={() => handleSharePress(quootID)}
@@ -111,19 +117,19 @@ export default function QuootComponent({
               style={styles.iconShare}
               source={require('../../../assets/images/share.png')}
             />
-            <Text style={styles.shareAmount}>1</Text>
+            <Text style={styles.shareAmount}>{shares}</Text>
           </Pressable>
           <Pressable
-            onPress={() => handleOptionsPress(quootID)}
-            onPressIn={() => setOptionsPressed(true)}
-            onPressOut={() => setOptionsPressed(false)}
-            style={[styles.forwardButton, optionsPressed ? styles.optionsPressed : {}]}
+            onPress={() => handleForwardPress(quootID)}
+            onPressIn={() => setForwardPressed(true)}
+            onPressOut={() => setForwardPressed(false)}
+            style={[styles.forwardButton, forwardPressed ? styles.forwardPressed : {}]}
           >
             <Image
-              style={styles.iconOptions}
-              source={require('../../../assets/images/options.png')}
+              style={styles.iconForward}
+              source={require('../../../assets/images/forward.png')}
             />
-            <Text style={styles.forwardAmount}>1</Text>
+            <Text style={styles.forwardAmount}>{forwards}</Text>
           </Pressable>
         </View>
       </View>
@@ -182,7 +188,7 @@ const styles = StyleSheet.create({
     backgroundColor:colors.quootrDarkPink,
     top: 2,
   },
-  optionsPressed: {
+  forwardPressed: {
     backgroundColor:colors.quootrDarkBlue,
     top: 2,
   },
@@ -196,7 +202,6 @@ const styles = StyleSheet.create({
   },
   user: {
     fontSize: 18,
-    fontWeight: 'bold',
     fontFamily: "SpaceGrotesk-Bold",
     color: colors.quootrBlack,
   },
@@ -209,7 +214,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginHorizontal: 5,
     color: colors.quootrBlack,
   },
@@ -315,7 +319,7 @@ const styles = StyleSheet.create({
     height: 30,
     resizeMode: 'contain',
   },
-  iconOptions: {
+  iconForward: {
     width: 30,
     height: 30,
     resizeMode: 'contain',

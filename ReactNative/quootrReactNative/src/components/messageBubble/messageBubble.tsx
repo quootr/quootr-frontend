@@ -82,7 +82,6 @@ const styles = StyleSheet.create({
   },
   separator: {
     fontSize: 18,
-    fontWeight: 'bold',
     marginHorizontal: 1,
     lineHeight: 18.5,
     textAlign: 'center',

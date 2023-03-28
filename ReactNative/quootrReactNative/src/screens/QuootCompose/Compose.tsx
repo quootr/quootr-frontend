@@ -17,6 +17,8 @@ import { useNavigation } from '@react-navigation/native';
 import ErrorComponent from '../../components/errorComponent/errorComponent';
 import QuootButton from '../../components/buttons/quootButton/quootButton';
 import ComposerHeader from '../../components/composerHeader/composerHeader';
+import CameraButton from '../../components/buttons/cameraButton/cameraButton';
+import PictureButton from '../../components/buttons/pictureButton/pictureButton';
 
 export default function Compose() {
   type Nav = {
@@ -26,14 +28,14 @@ export default function Compose() {
   const [apelido, setApelido] = useState('');
   const [error, setError] = useState('');
   const { navigate } = useNavigation<Nav>();
-
-  const handleCreateAccount = () => {
-    // call API to create account and handle response
-    // if the API returns an error, set the error message
-    // otherwise, navigate to the next screen
-    // setError('1');
-    navigate('RegisterInterestsProvide');
+  
+  const handleCameraPress = () => {
+    console.log("a")
   };
+  const quoothandler = () => {
+
+  }
+  
   const test = () => {}
   const dismissKeyboard = () => {
     Keyboard.dismiss();
@@ -59,12 +61,17 @@ return (
           // Handle email submission
         }}
       />
-      <QuootButton
-        title="Quoot!"
-        onPress={handleCreateAccount}
-        style={styles.button}
-        textColor="quootrWhite"
-      />
+      <View style={styles.composeButtons}>
+        <CameraButton 
+          onPress={handleCameraPress}/>
+        <PictureButton
+          onPress={handleCameraPress}/>
+        <QuootButton
+          title="Quoot!"
+          onPress={quoothandler}
+          textColor="quootrWhite"
+        />
+      </View>
     </View>
     </TouchableWithoutFeedback>
   );
@@ -80,6 +87,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.quootrWhite,
+  },
+  composeButtons: {
+    flexDirection: 'row',
+    marginTop: 10,
+    height: 80,
+    width: maxWidth,
+    justifyContent: 'space-between',
   },
   topArea: {
     width: '100%',
@@ -99,9 +113,6 @@ const styles = StyleSheet.create({
     width: titleWidth,
     textAlign: 'center',
 
-  },
-  button: {
-    marginTop: 20,
   },
   
 });
