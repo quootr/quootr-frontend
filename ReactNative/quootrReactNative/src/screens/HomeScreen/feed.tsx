@@ -206,6 +206,21 @@ export default function Feed() {
           onSharePress={handleSharePress}
         />
         <QuootComponent
+          quootID='09'
+          comments='120'
+          forwards='121'
+          shares='12'
+          user="Guaxinas"
+          username="guaxi"
+          userImage="https://cdn.discordapp.com/attachments/633869390365982750/1083938083260608633/image.png"
+          quootContent="Melei minha cadeira"
+          quootImage='https://storage.googleapis.com/exemplo_quootr/media/f63010f2fd2b1280f84370384685393c5053bfa963f27b0d8f46b3e2c1735b76'
+          quootTimestamp='há 45min'
+          onForwardPress={handleOptionsPress}
+          onCommentPress={handleCommentPress}
+          onSharePress={handleSharePress}
+        />
+        <QuootComponent
           quootID='10'
           comments='10'
           forwards='12'

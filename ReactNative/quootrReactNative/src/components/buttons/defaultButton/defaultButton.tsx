@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
 import colors from '../../../colors';
 import { Dimensions } from 'react-native';
+import { Shadow } from 'react-native-shadow-2';
 
 type DefaultButtonProps = {
   title: string;

@@ -57,9 +57,18 @@ export default function Login() {
     Keyboard.dismiss();
   };
 
+  const handleInputChange = (text: string) => {
+    const inputText = text.replace(/^@?/, "");
+    setUsername('@' + inputText);
+  };
+  
+  
+  const handleSubmit = () => {
+    const submittedText = username.replace(/^@/, "");
+    // Handle submission with submittedText
+    console.log("Submitted text:", submittedText);
+  };
 
-  
-  
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <View style={styles.container}>
@@ -71,15 +80,13 @@ export default function Login() {
         <TextInputField
         placeholder="@apelido"
         value={username}
-        onChangeText={setUsername}
+        onChangeText={handleInputChange}
         keyboardType="default"
         autoCapitalize="none"
-        onSubmitEditing={() => {
-            // Handle email submission
-        }}
+        onSubmitEditing={handleSubmit}
         error={usernameError}
         onFocus={() => setUsernameError('')}
-        />
+      />
         <TextInputField
         placeholder="Senha"
         value={password}

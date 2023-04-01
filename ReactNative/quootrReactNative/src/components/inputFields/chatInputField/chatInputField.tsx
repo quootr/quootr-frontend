@@ -52,7 +52,7 @@ const ChatInputField = ({ onSend }: ChatInputFieldProps) => {
         style={styles.inputField}
         value={message}
         onChangeText={handleChangeText}
-        placeholder="Type your message"
+        placeholder="Diga algo..."
         placeholderTextColor={colors.quootrBlack}
       />
       <Pressable onPress={handleSend} disabled={!message}>
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     marginRight: 10,
     fontSize: 16,
+    fontFamily: "SpaceGrotesk-Regular"
   },
   sendButton: {
     width: 24,

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Pressable, Image, StyleSheet } from 'react-native';
 import colors from '../../colors';
 import { useNavigation } from '@react-navigation/native';
+import { Shadow } from 'react-native-shadow-2';
 type MessageButtonProps = {
   onPress: () => void;
 };
@@ -12,6 +13,7 @@ const MessageButton: React.FC<MessageButtonProps> = ({ onPress }) => {
   const [isPressed, setIsPressed] = useState(false);
   const { navigate } = useNavigation<Nav>();
   return (
+    
     <Pressable
       style={[styles.button, isPressed ? styles.buttonPressed : {}]}
       onPress={() => navigate("Messages")}
@@ -43,7 +45,8 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 3,
       width: 0,
-    }
+    },
+    
   },
   buttonPressed: {
     top: 4,

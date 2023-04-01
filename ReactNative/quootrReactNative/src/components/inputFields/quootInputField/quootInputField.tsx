@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '90%',
     textAlign: 'left',
+    textAlignVertical: 'top',
     // backgroundColor: colors.debug,
   },
   charsRemaining: {

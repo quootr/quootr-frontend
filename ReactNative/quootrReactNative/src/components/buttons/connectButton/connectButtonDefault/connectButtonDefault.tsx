@@ -20,7 +20,7 @@ export default function ConnecButtonDefault({ onPress, buttonKey, defaultImage, 
   const buttonStyles = [
     styles.button,
     {
-      backgroundColor: isChecked ? colors.quootrGreen : colors.quootrWhite,
+      backgroundColor: isChecked ? colors.quootrGreen : colors.quootrGreen,
       shadowColor: isChecked ? colors.quootrGreen : colors.quootrBlack,
       shadowOpacity: isChecked ? 0 : 0,
       elevation: isChecked ? 0 : 0,
