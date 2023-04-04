@@ -28,7 +28,9 @@ export default function Profile() {
 return (
 <TouchableWithoutFeedback onPress={dismissKeyboard}>
     <View style={styles.container}>
-
+        <Image style={styles.banner}
+        source={require('../../../assets/images/banner.png')}
+        />
       
     </View>
     </TouchableWithoutFeedback>
@@ -43,7 +45,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     backgroundColor: colors.quootrPink,
   },
+    banner: {
+    width: '100%',
+    height: 220,
+    resizeMode: 'cover',
+    backgroundColor: colors.quootrPurple,
+    },
 });

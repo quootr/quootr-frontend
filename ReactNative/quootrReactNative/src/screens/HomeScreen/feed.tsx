@@ -29,6 +29,7 @@ export default function Feed() {
 
   const handleProfileButtonPress = () => {
     console.log('Profile pressed');
+    navigate("Profile");
   };
   type Nav = {
     navigate: (value: string) => void;
