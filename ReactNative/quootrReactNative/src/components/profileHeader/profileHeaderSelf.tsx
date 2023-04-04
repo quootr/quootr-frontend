@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Image, Pressable, StyleSheet } from 'react-native';
 import colors from '../../colors';
+import ProfileSettingsButton from '../buttons/profileSettingsButton/profileSettingsButton';
+import ProfileEditButton from '../buttons/profileEditButton/profileEditButton';
 
 const ProfileHeaderSelf = () => {
   return (
@@ -13,14 +15,14 @@ const ProfileHeaderSelf = () => {
           }}
         />
       </View>
-      <Pressable style={styles.settingsButton}>
-        <Image
-          style={styles.settingsIcon}
-          source={{
-            uri: 'https://via.placeholder.com/50',
-          }}
-        />
-      </Pressable>
+      <View style={styles.profileButtons}>
+      <ProfileSettingsButton 
+        onPress={() => console.log('pressed')}
+      />
+      <ProfileEditButton
+        onPress={() => console.log('pressed')}
+      />
+      </View>
     </View>
   );
 };
@@ -30,6 +32,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
+  },
+  profileButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
   },
   imageContainer: {
     width: 95,

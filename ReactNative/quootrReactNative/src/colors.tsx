@@ -14,6 +14,7 @@ const colors = {
     quootrRed: '#FF5B4F',
     quootrDarkRed: '#AE2F2F',
     quootrOrange: '#ff985f',
+    quootrDarkOrange: '#DC640E',
     quootrWeakGray: '#BDBDBD',
     quootrGray: '#828282',
     quootrElectrifiedYellow: '#f9ff00',

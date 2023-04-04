@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
     banner: {
     width: '100%',
-    height: 220,
+    height: 240,
     maxWidth: maxWidth,
     resizeMode: 'cover',
     backgroundColor: colors.quootrPurple,
