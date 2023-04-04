@@ -34,8 +34,8 @@ const NotificationsComponent: React.FC<NotificationsComponentProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    width: 47,
-    height: 47,
+    width: 42,
+    height: 42,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: colors.quootrBlack,

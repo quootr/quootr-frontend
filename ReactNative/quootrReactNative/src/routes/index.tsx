@@ -10,6 +10,7 @@ import RegisterCreateUsername from "../screens/AccountSetup/RegisterCreateUserna
 import RegisterInterestsProvide from "../screens/AccountSetup/RegisterInterestsProvide/registerInterestsProvide";
 import RegisterFollowAccounts from "../screens/AccountSetup/RegisterFollowAccounts/registerFollowAccounts";
 import Compose from "../screens/QuootCompose/Compose";
+import Profile from "../screens/Profile/profile";
 
 // import LoginScreen from "../screens/LoginScreen/login";
 // import RegisterScreen from "../screens/RegisterScreen/register";
@@ -48,60 +49,79 @@ export default function Routes() {
       <Stack.Screen
         name="Login"
         component={Login}
-        options={{headerShown: false}}
+        options={{headerShown: false,
+          animation: 'none',}}
         />
         
       <Stack.Screen
         name="RegisterCreateAccount"
         component={RegisterCreateAccount}
-        options={{headerShown: false}}
+        options={{headerShown: false,
+          animation: 'none',}}
         />
 
       <Stack.Screen
         name="RegisterVerifyAccount"
         component={RegisterVerifyAccount}
-        options={{headerShown: false}}
+        options={{headerShown: false,
+          animation: 'none',}}
         />
 
       <Stack.Screen
         name="RegisterCreateUsername"
         component={RegisterCreateUsername}
-        options={{headerShown: false}}
+        options={{headerShown: false,
+          animation: 'none',}}
         />
 
       <Stack.Screen
         name="RegisterInterestsProvide"
         component={RegisterInterestsProvide}
-        options={{headerShown: false}}
+        options={{headerShown: false,
+          animation: 'none',}}
         />
 
       <Stack.Screen
         name="RegisterFollowAccounts"
         component={RegisterFollowAccounts}
-        options={{headerShown: false}}
+        options={{headerShown: false,
+          animation: 'none',}}
         />
 
       <Stack.Screen
         name="Feed"
         component={Feed}
-        options={{headerShown: false}}
+        options={{headerShown: false,
+          animation: 'none',}}
         />
       <Stack.Screen
       name="Compose"
       component={Compose}
-      options={{headerShown: false}}
+      options={{headerShown: false,
+        animation: 'slide_from_bottom',
+        gestureEnabled: true,
+        gestureDirection: 'vertical',}}
       />
       <Stack.Screen
         name="Messages"
         component={Messages}
-        options={{headerShown: false}}
-      />
+        options={{headerShown: false,
+          animation: 'slide_from_right',}}
+        />
 
       <Stack.Screen
         name="Chat"
         component={Chat}
-        options={{headerShown: false}}
-      />
+        options={{headerShown: false,
+          animation: 'none',}}
+        />
+
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{headerShown: false,
+          animation: 'slide_from_left',}}
+        />
       
     </Stack.Navigator>
   );

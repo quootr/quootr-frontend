@@ -58,13 +58,12 @@ export default function Login() {
   };
 
   const handleInputChange = (text: string) => {
-    const inputText = text.replace(/^@?/, "");
-    setUsername('@' + inputText);
+    setUsername(text);
   };
   
   
   const handleSubmit = () => {
-    const submittedText = username.replace(/^@/, "");
+    const submittedText = username;
     // Handle submission with submittedText
     console.log("Submitted text:", submittedText);
   };
@@ -78,7 +77,7 @@ export default function Login() {
         />
         <Text style={styles.title}>Quem é você?</Text>
         <TextInputField
-        placeholder="@apelido"
+        placeholder="apelido"
         value={username}
         onChangeText={handleInputChange}
         keyboardType="default"

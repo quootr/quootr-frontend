@@ -44,10 +44,10 @@ return (
       />
 
       <Text style={styles.title}>
-        Por último, um @apelido único para você!
+        Por último, um apelido único para você!
       </Text>
       <TextInputField
-        placeholder="@apelido"
+        placeholder="apelido"
         value={apelido}
         onChangeText={setApelido}
         keyboardType="default"
@@ -57,7 +57,7 @@ return (
         }}
       />
 
-      {error ? <ErrorComponent error='Este @apelido já está sendo usado, por favor, escolha outro...'/> : null}
+      {error ? <ErrorComponent error='Este apelido já está sendo usado, por favor, escolha outro...'/> : null}
 
       <DefaultButton
         title="Criar conta!"

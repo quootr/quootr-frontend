@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
     marginBottom: 10,
     borderBottomColor: colors.quootrBlack,
-    borderBottomWidth: 4,
+    borderBottomWidth: 1,
     backgroundColor: colors.quootrGreen,
   },
   backButton: {

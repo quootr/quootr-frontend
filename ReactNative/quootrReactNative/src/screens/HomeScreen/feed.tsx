@@ -70,9 +70,9 @@ export default function Feed() {
           quootColor='quootColorAqua'
           username="joaodavisn"
           userImage="https://pbs.twimg.com/profile_images/1591988634231754757/N81ZTAOJ_400x400.jpg"
-          quootContent="Aqui é um componente de Quoot, isso aqui fica várias coisas legais é é fica mesmo sim é."
+          quootContent="Um componente de Quoot com imagem! Pense só nas maravilhas que você poderá compartilhar aqui :)"
           quootTimestamp='há 15min'
-          quootImage="https://pbs.twimg.com/media/FrZSMk8XsAI8Svc?format=png&name=900x900"
+          quootImage="https://pbs.twimg.com/media/Fst3k0iX0AAfPKv?format=jpg&name=large"
           onForwardPress={handleOptionsPress}
           onCommentPress={handleCommentPress}
           onSharePress={handleSharePress}

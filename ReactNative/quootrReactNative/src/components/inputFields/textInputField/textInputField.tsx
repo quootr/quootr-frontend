@@ -86,14 +86,6 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     borderWidth: 1,
     borderColor: colors.quootrBlack,
-    shadowColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    },
   },
   inputField: {
     flex: 1,

@@ -3,7 +3,12 @@ import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 import colors from '../../colors';
 import { Dimensions } from 'react-native';
 
-type ComposerHeaderProps = {};
+type ComposerHeaderProps = {
+  quootColor: string;
+  visibility: string;
+  onColorChange: (color: ColorKey) => void;
+  onVisibilityChange: (option: string) => void;
+};
 type Colors = typeof colors;
 type ColorKey = keyof Colors;
 
@@ -12,10 +17,9 @@ const ComposerHeader = (props: ComposerHeaderProps) => {
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
   const filterOptions = ['Conexões', 'Todos'];
   const [visibility, setVisibility] = useState('Todos');
-
   const [showColorDropdown, setShowColorDropdown] = useState(false);
-  const colorOptions: ColorKey[] = ['quootColorRed', 'quootColorPurple', 'quootColorAqua', 'quootColorYellow', 'quootColorOrange', 'quootColorPink', 'quootColorGreen'];
-  const [selectedColor, setSelectedColor] = useState<ColorKey>('quootColorRed');
+  const colorOptions: ColorKey[] = ['quootColorRed', 'quootColorPurple', 'quootColorAqua', 'quootColorYellow', 'quootColorOrange', 'quootColorPink', 'quootColorGreen', 'quootrWhite'];
+  const [selectedColor, setSelectedColor] = useState<ColorKey>('quootrWhite');
 
 
   const handleFilterChange = (option: string) => {
@@ -24,6 +28,8 @@ const ComposerHeader = (props: ComposerHeaderProps) => {
   
     if (option === 'Conexões' || option === 'Todos') {
       setVisibility(option);
+      visibility === option;
+      props.onVisibilityChange(option);
     }
   };
   
@@ -46,22 +52,35 @@ const ComposerHeader = (props: ComposerHeaderProps) => {
   const handleColorChange = (option: ColorKey) => {
     setSelectedColor(option);
     setShowColorDropdown(false);
+    // console.log(`Selected color: ${option}`);
+    props.onColorChange(option);
+  };
+
+  const handleVisibilityChange = (option: string) => {
+    setVisibility(option);
+    setShowFilterDropdown(false);
+    // console.log(`Selected visibility: ${option}`);
+    props.onVisibilityChange(option);
   };
 
   return (
+    
     <View style={styles.container}>
+      <View style={styles.colorWrapper}>
       <Pressable onPress={() => setShowColorDropdown(!showColorDropdown)}>
         <View style={[styles.colorCircle, { backgroundColor: colors[selectedColor] }]} />
       </Pressable>
+      </View>
       {renderColorDropdown()}
-      
+
+      <View style={styles.filterWrapper}>
       <Pressable
         onPress={() => setShowFilterDropdown(!showFilterDropdown)}
         style={styles.dropdownText}
       >
         <Text style={styles.textRegular}>{`Visibilidade: ${visibility}`}</Text>
       </Pressable>
-
+      </View>
       {showFilterDropdown && (
         <View style={[styles.dropdownWrapperText]}>
           {filterOptions.map((option, index) => (
@@ -87,7 +106,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 8,
     width: maxWidth,
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: colors.quootrWhite,
@@ -95,14 +114,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderWidth: 1,
     borderColor: colors.quootrBlack,
-    shadowColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    },
+  },
+  filterWrapper: {
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: colors.quootrBlack,
+    left: 10,
+    paddingVertical: 3,
+    paddingHorizontal: 5,
+  },
+  colorWrapper: {
+    borderWidth: 1,
+    borderRadius: 5,
+    right: 9,
+    borderColor: colors.quootrBlack,
   },
   textBold: {
     fontFamily: "SpaceGrotesk-Bold",
@@ -118,8 +143,8 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   colorCircle: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     borderRadius: 15,
     borderWidth: 1,
     margin: 5,
@@ -127,38 +152,22 @@ const styles = StyleSheet.create({
   dropdownWrapperText: {
     position: 'absolute',
     top: 55,
-    right: 0,
+    right: 4,
     backgroundColor: colors.quootrWhite,
     borderRadius: 8,
     padding: 5,
     borderWidth: 1,
     borderColor: colors.quootrBlack,
-    shadowColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    },
   },
   dropdownWrapperColor: {
     position: 'absolute',
     top: 55,
-    left: 8,
+    left: -1,
     backgroundColor: colors.quootrWhite,
     borderRadius: 8,
     padding: 5,
     borderWidth: 1,
     borderColor: colors.quootrBlack,
-    shadowColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    },
   },
 });
 export default ComposerHeader;

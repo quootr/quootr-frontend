@@ -5,17 +5,14 @@ import { Dimensions } from 'react-native';
 
 const sanitizeInput = (input: string): string => {
   return input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+    
 };
 
 type QuootInputFieldProps = {
   id: string;
   placeholder?: string;
   value: string;
+  backgroundColor?: string;
   onChangeText: (text: string) => void;
   onSubmitEditing: () => void;
   keyboardType?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad' | 'visible-password';
@@ -29,6 +26,7 @@ const QuootInputField = ({
   id,
   placeholder,
   value,
+  backgroundColor,
   onChangeText,
   onSubmitEditing,
   keyboardType = 'default',
@@ -53,7 +51,7 @@ const QuootInputField = ({
     const charsRemaining = maxChars - value.length;
   
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { backgroundColor }]}>
         <TextInput
           style={[
             styles.inputField,
@@ -61,7 +59,7 @@ const QuootInputField = ({
           value={value}
           onChangeText={handleChangeText}
           placeholder={placeholder || 'Type a text...'}
-          placeholderTextColor={colors.quootrGray}
+          placeholderTextColor={colors.quootrLowOpacity}
           onSubmitEditing={handleSend}
           blurOnSubmit={false}
           keyboardType={keyboardType}
@@ -87,7 +85,6 @@ const maxHeight = Math.min(width * 0.75, 530);
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    backgroundColor: colors.quootrWhite,
     width: maxWidth,
     height: maxHeight,
     borderRadius: 8,
@@ -96,16 +93,9 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     borderWidth: 1,
     borderColor: colors.quootrBlack,
-    shadowColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    },
   },
   inputField: {
+    color: colors.quootrBlack,
     fontFamily: 'SpaceGrotesk-Regular',
     borderRadius: 20,
     paddingHorizontal: 15,
@@ -118,7 +108,7 @@ const styles = StyleSheet.create({
   },
   charsRemaining: {
     alignSelf: 'flex-end',
-    color: colors.quootrGray,
+    color: colors.quootMultiplyColor,
     fontFamily: "SpaceGrotesk-Bold",
     paddingRight: 20,
     fontSize: 12,

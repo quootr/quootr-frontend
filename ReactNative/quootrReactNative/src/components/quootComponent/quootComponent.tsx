@@ -9,6 +9,9 @@ import {
 import colors from '../../colors';
 import { Dimensions } from 'react-native';
 import { Platform } from 'react-native';
+import { PinchGestureHandler } from 'react-native-gesture-handler';
+import { Animated } from 'react-native';
+import { State } from 'react-native-gesture-handler';
 
 type QuootComponentProps = {
   quootID: string;
@@ -61,7 +64,24 @@ export default function QuootComponent({
   const handleForwardPress = (quootID: string) => {
     console.log('Forward pressed for quoot ID:', quootID);
   };
+  const scale = new Animated.Value(1);
 
+  const onPinchGestureEvent = Animated.event([{ nativeEvent: { scale: new Animated.Value(1) } }], { useNativeDriver: true });
+  
+  const onZoomEvent = Animated.event(
+    [{ nativeEvent: { scale } }],
+    { useNativeDriver: true }
+  );
+
+  const onZoomStateChange = (event: { nativeEvent: { oldState: number } }) => {
+    if (event.nativeEvent.oldState === State.ACTIVE) {
+      Animated.spring(scale, {
+        toValue: 1,
+        useNativeDriver: true
+      }).start();
+    }
+  };
+ 
   const getVerifiedImage = () => {
     switch (verifiedType) {
       case 'verified':
@@ -90,9 +110,22 @@ export default function QuootComponent({
           <Text style={styles.username}>@{username}</Text>
         </View>
         <Text style={styles.quootContent}>{quootContent}</Text>
+
+        {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
+
+        <PinchGestureHandler
+      onGestureEvent={onPinchGestureEvent}
+      onHandlerStateChange={onZoomStateChange}
+    >
+      <Animated.View style={{ transform: [{ scale: Animated.multiply(scale, 1) }] }}>
         {quootImage ? (
           <Image style={styles.quootImage} source={{ uri: quootImage }} />
         ) : null}
+      </Animated.View>
+    </PinchGestureHandler>
+
+        {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
+
         <Text style={styles.quootTimestamp}>{quootTimestamp}</Text>
         <View style={styles.buttonsContainer}>
           <Pressable
@@ -141,7 +174,7 @@ export default function QuootComponent({
 const { width } = Dimensions.get('window');
 const maxWidth = Math.min(width * 0.80, 530);
 const imageWidth = Math.min(width*.74009, 510);
-const imageHeight = Math.min(width*.54, 350); 
+const imageHeight = Math.min(width*.8, 350); 
 const borderRadiusDefault = 8;
 
 const styles = StyleSheet.create({

@@ -31,6 +31,8 @@ const colors = {
     quootColorPink: '#ff9bcb',
     quootColorGreen: '#d1ffa4',
     debug: '#fb00ff',
+    quootrLowOpacity: 'rgba(0, 0, 0, 0.3)',
+    quootMultiplyColor: 'rgba(0, 0, 0, 0.3)',
   };
   
   export default colors;

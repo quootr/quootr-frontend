@@ -55,14 +55,6 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     marginHorizontal: 35,
     borderWidth: 1,
-    shadowColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    }
   },
   content: {
     fontSize: 14,

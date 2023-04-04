@@ -42,15 +42,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 16,
     paddingVertical: 8,
-    shadowColor: colors.quootrBlack,
     borderColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    }
   },
   icon: {
     width: 20,

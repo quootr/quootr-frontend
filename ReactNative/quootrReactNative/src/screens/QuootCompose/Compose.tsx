@@ -9,33 +9,54 @@ import {
     Keyboard,
   } from 'react-native';
 import colors from '../../colors';
-import TextInputField from '../../components/inputFields/textInputField/textInputField';
 import QuootInputField from '../../components/inputFields/quootInputField/quootInputField';
-import DefaultButton from '../../components/buttons/defaultButton/defaultButton';
 import { Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import ErrorComponent from '../../components/errorComponent/errorComponent';
 import QuootButton from '../../components/buttons/quootButton/quootButton';
 import ComposerHeader from '../../components/composerHeader/composerHeader';
 import CameraButton from '../../components/buttons/cameraButton/cameraButton';
 import PictureButton from '../../components/buttons/pictureButton/pictureButton';
+import { RNCamera, TakePictureResponse } from 'react-native-camera';
+import { PermissionsAndroid, Platform } from 'react-native';
 
-export default function Compose() {
+type ColorKey = keyof typeof colors;
+interface ComposeProps {
+  initialQuootColor?: ColorKey;
+} 
+export default function Compose(props: ComposeProps) {
   type Nav = {
     navigate: (value: string) => void;
   };
-
-  const [apelido, setApelido] = useState('');
+  type QuootColor = 'quootColorRed' | 'quootColorPurple' | 'quootColorAqua' | 'quootColorYellow' | 'quootColorOrange' | 'quootColorPink' | 'quootColorGreen' | 'quootrWhite';
+  const [quootText, setQuootText] = useState('');
+  const [quootColor, setQuootColor] = useState<keyof typeof colors>(props.initialQuootColor ?? 'quootrWhite');
+  const [visibility, setVisibility] = useState('Todos');
   const [error, setError] = useState('');
   const { navigate } = useNavigation<Nav>();
   
   const handleCameraPress = () => {
-    console.log("a")
+    console.log("Camera pressed")
+    
   };
-  const quoothandler = () => {
-
-  }
+  const handlePicturePress = () => {
+    console.log("Picture pressed")
+  };
+  const handleBackPress = () => { navigate('Feed') };
   
+  const quoothandler = (quootContent: string, quootColor: ColorKey) => {
+    console.log("Quoot pressed" + `[ Quoot content is: ${quootContent} ] and [ Quoot color is: ${quootColor} ] and [ Visibility is: ${visibility} ]]`)
+  }
+
+  const handleQuootColorChange = (color: keyof typeof colors) => {
+    console.log('Quoot color changed to: ' + color);
+    setQuootColor(color);
+  };
+
+  const handleVisibilityChange = (option: string) => {
+    console.log('Visibility changed to: ' + option);
+    setVisibility(option);
+  };
+
   const test = () => {}
   const dismissKeyboard = () => {
     Keyboard.dismiss();
@@ -44,31 +65,41 @@ return (
 <TouchableWithoutFeedback onPress={dismissKeyboard}>
     <View style={styles.container}>
     <View style={styles.topArea}>
+    <Pressable style={styles.backButton} onPress={handleBackPress}>
+        <Image source={require('../../../assets/images/back.png')} style={styles.backButtonImage}/>
+      </Pressable>
         <Text style={styles.composeTitle}>O que você quer compartilhar?</Text>
     </View>
-    <ComposerHeader/>
+    <ComposerHeader
+      onColorChange={handleQuootColorChange}
+      onVisibilityChange={handleVisibilityChange}
+      quootColor={quootColor}
+      visibility={visibility}
+    />
       <QuootInputField
         autoCorrect={true}
         onFocus={test}
-        placeholder='O que você quer compartilhar?'
+        placeholder='Escreva algo bem dahora aqui... Uma ideia, um conto, ou até uma piada!'
         secureTextEntry={false}
         id=''
-        value={apelido}
-        onChangeText={setApelido}
+        value={quootText}
+        onChangeText={setQuootText}
         keyboardType="default"
         autoCapitalize="none"
+        backgroundColor={colors[quootColor]}
         onSubmitEditing={() => {
           // Handle email submission
         }}
       />
+      <View style={{ height: 2, backgroundColor: colors.quootrWeakGray, borderRadius: 3, zIndex: 4, width: maxWidth, marginTop: 4,}} />
       <View style={styles.composeButtons}>
         <CameraButton 
           onPress={handleCameraPress}/>
         <PictureButton
-          onPress={handleCameraPress}/>
+          onPress={handlePicturePress}/>
         <QuootButton
           title="Quoot!"
-          onPress={quoothandler}
+          onPress={() => quoothandler(quootText , quootColor)}
           textColor="quootrWhite"
         />
       </View>
@@ -97,14 +128,16 @@ const styles = StyleSheet.create({
   },
   topArea: {
     width: '100%',
+    flexDirection: 'row',
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
     height: 150,
     borderBottomColor: colors.quootrBlack,
-    borderBottomWidth: 4,
+    borderBottomWidth: 1,
     backgroundColor: colors.quootrPurple,
   },
+  backButton: {},
   composeTitle: {
     color: colors.quootrWhite,
     marginTop: 50,
@@ -112,7 +145,14 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
     width: titleWidth,
     textAlign: 'center',
-
+    marginRight: 20,
   },
+  backButtonImage: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+    marginTop: 50,
+    right: 30,
+  }
   
 });

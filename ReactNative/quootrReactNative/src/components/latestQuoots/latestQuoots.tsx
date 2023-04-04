@@ -10,10 +10,10 @@ import {
 import colors from "../../colors";
 
 export default function LatestQuoots() {
-  const [selectedFilter, setSelectedFilter] = useState('Regional');
+  const [selectedFilter, setSelectedFilter] = useState('Região');
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const dropdownOptions = ['Regional', 'Amigos', 'Global'];
+  const dropdownOptions = ['Região', 'Amigos', 'Global'];
 
   const handleChangeFilter = (value: string) => {
     setSelectedFilter(value);
@@ -63,14 +63,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.quootrYellow,
     borderRadius: borderRadiusDefault,
     padding: 10,
-    shadowColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    },
     zIndex: 1,
   },
   title: {
@@ -78,7 +70,8 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk-Bold',
   },
   dropdown: {
-    width: 80,
+    width: 'auto',
+    paddingHorizontal: 5,
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',

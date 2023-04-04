@@ -8,14 +8,11 @@ import {
 } from 'react-native';
 import colors from '../../../colors';
 import { Dimensions } from 'react-native';
+import { Platform } from 'react-native';
 
 const sanitizeInput = (input: string): string => {
   return input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+    
 };
 type ChatInputFieldProps = {
   onSend: (message: string) => void;
@@ -39,7 +36,7 @@ const ChatInputField = ({ onSend }: ChatInputFieldProps) => {
     const sanitizedText = sanitizeInput(text);
     setMessage(sanitizedText);
   };
-
+  
   return (
     <View style={styles.container}>
       <Pressable onPress={handleInsertFiles}>
@@ -49,12 +46,15 @@ const ChatInputField = ({ onSend }: ChatInputFieldProps) => {
         />
       </Pressable>
       <TextInput
-        style={styles.inputField}
-        value={message}
-        onChangeText={handleChangeText}
-        placeholder="Diga algo..."
-        placeholderTextColor={colors.quootrBlack}
-      />
+      style={styles.inputField}
+      value={message}
+      onChangeText={handleChangeText}
+      placeholder="Diga algo..."
+      placeholderTextColor={colors.quootrBlack}
+      multiline={true}
+      maxLength={1600}
+      scrollEnabled={true}
+    />
       <Pressable onPress={handleSend} disabled={!message}>
         <Image
           style={[styles.sendButton, !message ? styles.sendButtonDisabled : {}]}
@@ -71,7 +71,7 @@ const maxWidth = Math.min(width * 0.80, 530);
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'baseline',
     paddingHorizontal: 10,
     paddingVertical: 5,
     backgroundColor: colors.quootrWhite,
@@ -81,30 +81,25 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: colors.quootrBlack,
-    shadowColor: colors.quootrBlack,
-    shadowOpacity: 1,
-    elevation: 3,
-    shadowRadius: 0,
-    shadowOffset: {
-      height: 3,
-      width: 0,
-    }
   },
   insertFilesButton: {
     width: 24,
     height: 24,
     marginRight: 10,
     resizeMode: 'contain',
+    backgroundColor: colors.quootrWhite,
   },
   inputField: {
     flex: 1,
     backgroundColor: colors.quootrWhite,
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    borderRadius: 2,
+    paddingHorizontal: 5,
+    paddingVertical: 6,
     marginRight: 10,
     fontSize: 16,
-    fontFamily: "SpaceGrotesk-Regular"
+    fontFamily: "SpaceGrotesk-Regular",
+    textAlignVertical: 'top',
+    maxHeight: 80,
   },
   sendButton: {
     width: 24,

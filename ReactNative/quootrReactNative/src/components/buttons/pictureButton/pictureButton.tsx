@@ -18,7 +18,7 @@ const PictureButton: React.FC<PictureButtonProps> = ({ onPress }) => {
   return (
     <Pressable
       style={[styles.button, isPressed ? styles.buttonPressed : {}]}
-      onPress={() => onPress}
+      onPress={onPress}
       onPressIn={() => setIsPressed(true)}
       onPressOut={() => setIsPressed(false)}
     >
