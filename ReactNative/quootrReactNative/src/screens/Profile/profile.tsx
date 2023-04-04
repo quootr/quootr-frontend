@@ -14,6 +14,7 @@ import DefaultButton from '../../components/buttons/defaultButton/defaultButton'
 import { Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ErrorComponent from '../../components/errorComponent/errorComponent';
+import ProfileHeaderSelf from '../../components/profileHeader/profileHeaderSelf';
 
 export default function Profile() {
   type Nav = {
@@ -31,14 +32,16 @@ return (
         <Image style={styles.banner}
         source={require('../../../assets/images/banner.png')}
         />
-      
+        <View style={styles.profileHolder}>
+        <ProfileHeaderSelf/>
+        </View>
     </View>
     </TouchableWithoutFeedback>
   );
 }
 
 const { width } = Dimensions.get('window');
-const maxWidth = Math.min(width * 0.8, 530);
+const maxWidth = Math.min(width * 1, 630);
 const imageSize = Math.min(maxWidth * 0.4);
 const styles = StyleSheet.create({
   container: {
@@ -51,7 +54,11 @@ const styles = StyleSheet.create({
     banner: {
     width: '100%',
     height: 220,
+    maxWidth: maxWidth,
     resizeMode: 'cover',
     backgroundColor: colors.quootrPurple,
+    },
+    profileHolder: {
+    top: -imageSize / 0.8,
     },
 });
