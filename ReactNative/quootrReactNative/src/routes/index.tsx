@@ -120,7 +120,7 @@ export default function Routes() {
         name="Profile"
         component={Profile}
         options={{headerShown: false,
-          animation: 'slide_from_right',}}
+          animation: 'slide_from_left',}}
         />
       
     </Stack.Navigator>

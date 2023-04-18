@@ -31,7 +31,7 @@ export default function RegisterFollowAccounts() {
     // if the API returns an error, set the error message
     // otherwise, navigate to the next screen
     // setError('1');
-    navigate('Feed');
+    navigate('Login');
   };
 
   const handleSearch = () => {

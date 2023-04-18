@@ -14,6 +14,7 @@ import DefaultButton from '../../../components/buttons/defaultButton/defaultButt
 import { Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import ErrorComponent from '../../../components/errorComponent/errorComponent';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function RegisterCreateUsername() {
   type Nav = {
@@ -21,15 +22,67 @@ export default function RegisterCreateUsername() {
   };
 
   const [apelido, setApelido] = useState('');
-  const [error, setError] = useState('');
+  let [error, setError]: any = useState('');
   const { navigate } = useNavigation<Nav>();
 
-  const handleCreateAccount = () => {
+  const handleCreateAccount = async () => {
     // call API to create account and handle response
     // if the API returns an error, set the error message
     // otherwise, navigate to the next screen
     // setError('1');
-    navigate('RegisterInterestsProvide');
+    let nickNameVerify : any;
+    let registrationData:null | any = null;
+    await fetch('https://quootr-backend.herokuapp.com/api/users/username/'+apelido)
+    .then((response) => response.json())
+      .then((data) => {
+        nickNameVerify = data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      console.log(nickNameVerify)
+
+    if (!apelido) {
+      setError('Obrigatório');
+    }
+    else if (nickNameVerify === false) {
+      setError('1');
+    }
+    else {
+      setError(null);
+    }
+
+    await AsyncStorage.getItem('registrationData').then((data) => {
+      if (data !== null) {
+        registrationData = JSON.parse(data);
+      }
+    });
+    registrationData.username = apelido;
+    
+    if (nickNameVerify) 
+    {
+      await fetch('https://quootr-backend.herokuapp.com/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(registrationData),
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+
+
+      navigate('RegisterInterestsProvide');
+      
+    }
+    
   };
 
   const dismissKeyboard = () => {
@@ -56,7 +109,7 @@ return (
           // Handle email submission
         }}
       />
-
+{/* name.replace(/\s+/g, '') */}
       {error ? <ErrorComponent error='Este apelido já está sendo usado, por favor, escolha outro...'/> : null}
 
       <DefaultButton

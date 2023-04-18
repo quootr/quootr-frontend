@@ -12,6 +12,7 @@ import TextInputField from '../../../components/inputFields/textInputField/textI
 import DefaultButton from '../../../components/buttons/defaultButton/defaultButton';
 import { Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function RegisterVerifyAccount() {
   type Nav = {
@@ -26,8 +27,35 @@ export default function RegisterVerifyAccount() {
   const { navigate } = useNavigation<Nav>();
   const [formattedBirthDate, setFormattedBirthDate] = useState('');
   
-  const handleCreateAccount = () => {
-    navigate('RegisterCreateUsername');
+  let emailNameVerify : any;
+
+  const handleCreateAccount = async () => {
+    let registrationData:null | any = null;
+    
+
+    await fetch('https://quootr-backend.herokuapp.com/api/users/email/'+email)
+    .then((response) => response.json())
+    .then((data) => {
+      emailNameVerify = data;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+    await AsyncStorage.getItem('registrationData').then((data) => {
+      if (data !== null) {
+        registrationData = JSON.parse(data);
+      }
+    });
+    registrationData.mail = email;
+    registrationData.cell = parseInt(phone.replace(/\D/g, ''));
+    registrationData.birthdate = birthDate;
+    console.log(registrationData)
+    AsyncStorage.setItem('registrationData', JSON.stringify(registrationData))
+
+    if (validateFields()) {
+      navigate('RegisterCreateUsername');
+    }
   };
 
   const validateFields = () => {
@@ -35,7 +63,16 @@ export default function RegisterVerifyAccount() {
     if (!email.includes('@')) {
       setEmailError('Email inválido');
       isValid = false;
-    } else {
+    }
+    else if (!email.includes('.')) {
+      setEmailError('Email inválido');
+      isValid = false;
+    }
+    else if (emailNameVerify === false) {
+      setEmailError('Email em uso');
+      isValid = false;
+    }
+    else {
       setEmailError('');
     }
     if (!birthDate) {

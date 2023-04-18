@@ -13,6 +13,7 @@ import TextInputField from '../../../components/inputFields/textInputField/textI
 import DefaultButton from '../../../components/buttons/defaultButton/defaultButton';
 import { Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function RegisterCreateAccount() {
   type Nav = {
@@ -24,15 +25,37 @@ export default function RegisterCreateAccount() {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [inviteCodeError, setInviteCodeError] = useState('');
+  const [inviteCodeUsed, setInviteCodeUsed] = useState(false);
+  let [weakPassword, setWeakPassword] = useState(true);
   const [nameError, setNameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [passwordConfirmError, setPasswordConfirmError] = useState('');
   const { navigate } = useNavigation<Nav>();
 
-  const handleCreateAccount = () => {
+  const handleCreateAccount = async () => {
+    let inviteCodeVerify: any;
+
+    await fetch('https://quootr-backend.herokuapp.com/api/invite-codes?code='+inviteCode)
+      .then((response) => response.json())
+      .then((data) => {
+        inviteCodeVerify = data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      
+      console.log(inviteCodeVerify.exists)
+
     if (!inviteCode) {
       setInviteCodeError('Obrigatório');
-    } else {
+    }
+    else if (!inviteCodeVerify.exists) {
+      setInviteCodeError('Convite inexistente');
+    }
+    else if (inviteCodeVerify.used) {
+      setInviteCodeError('Convite já utilizado');
+    }
+    else {
       setInviteCodeError('');
     }
 
@@ -44,9 +67,18 @@ export default function RegisterCreateAccount() {
 
     if (!password) {
       setPasswordError('Obrigatório');
+    } else if (password.length < 8) {
+      setPasswordError('Senha muito fraca');
+    } else if (!/(?=.*[a-z])/.test(password)) {
+      setPasswordError('Pelo menos uma letra minúscula');
+    } else if (!/(?=.*[A-Z])/.test(password)) {
+      setPasswordError('Pelo menos uma letra maiúscula');
+    } else if (!/(?=.*\d)/.test(password)) {
+      setPasswordError('Pelo menos um número');
     } else {
+      weakPassword = false;
       setPasswordError('');
-    }
+    }    
 
     if (!passwordConfirm) {
       setPasswordConfirmError('Obrigatório');
@@ -56,9 +88,23 @@ export default function RegisterCreateAccount() {
       setPasswordConfirmError('');
     }
 
-    if (inviteCode && name && password && passwordConfirm && password === passwordConfirm) {
+    if (inviteCode && name && password && passwordConfirm && !weakPassword && inviteCodeVerify.exists && !inviteCodeVerify.used && password === passwordConfirm) {
+      const requestBody = {
+        inviteCode: inviteCode,
+        name: name,
+        username: "",
+        password: password,
+        mail:"",
+        cell:"",
+        birthdate:"",
+        gender:"",
+        adress:"",
+      };
+      AsyncStorage.setItem('registrationData', JSON.stringify(requestBody))
+      console.log(requestBody)
       navigate('RegisterVerifyAccount');
     }
+    
   };
 
 const handleLogin = () => {
@@ -67,6 +113,7 @@ const handleLogin = () => {
 
 const dismissKeyboard = () => {
     Keyboard.dismiss();
+    
   };
 
 return (

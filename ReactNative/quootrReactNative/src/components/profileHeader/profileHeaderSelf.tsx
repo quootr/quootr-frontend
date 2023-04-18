@@ -1,12 +1,17 @@
 import React from 'react';
-import { View, Image, Pressable, StyleSheet } from 'react-native';
+import { View, Image, Pressable, StyleSheet, Text } from 'react-native';
 import colors from '../../colors';
 import ProfileSettingsButton from '../buttons/profileSettingsButton/profileSettingsButton';
 import ProfileEditButton from '../buttons/profileEditButton/profileEditButton';
+import { Dimensions } from 'react-native';
 
 const ProfileHeaderSelf = () => {
   return (
     <View style={styles.container}>
+      <Image style={styles.banner}
+        source={require('../../../assets/images/banner.png')}
+        />
+        <View style={styles.image_buttons}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
@@ -23,9 +28,16 @@ const ProfileHeaderSelf = () => {
         onPress={() => console.log('pressed')}
       />
       </View>
+      </View>
+      <View style={styles.userNameHolder}>
+          <Text style={styles.userName}>DAVAS</Text>
+      </View>
     </View>
   );
 };
+const { width } = Dimensions.get('window');
+const maxWidth = Math.min(width * 1, 630);
+const imageSize = Math.min(maxWidth * 0.4);
 
 const styles = StyleSheet.create({
   container: {
@@ -38,6 +50,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 10,
   },
+  userName: {
+    fontFamily: 'SpaceGrotesk-Bold',
+    fontSize: 20,
+    color: colors.quootrBlack,
+  },
   imageContainer: {
     width: 95,
     height: 95,
@@ -48,6 +65,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.quootrBlack,
   },
+  image_buttons: { 
+    top: -200,
+     },
   image: {
     width: '100%',
     height: '100%',
@@ -64,11 +84,30 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.quootrBlack,
   },
+  userNameHolder: {
+    width: maxWidth,
+    height: 50,
+    backgroundColor: colors.debug,
+    marginTop: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: colors.quootrBlack,
+    borderTopWidth: 1,
+    borderTopColor: colors.quootrBlack,
+  },
   settingsIcon: {
     width: 30,
     height: 30,
     resizeMode: 'contain',
   },
+  banner: {
+    width: '100%',
+    height: 240,
+    maxWidth: maxWidth,
+    resizeMode: 'cover',
+    backgroundColor: colors.quootrWhite,
+    },
 });
 
 export default ProfileHeaderSelf;
